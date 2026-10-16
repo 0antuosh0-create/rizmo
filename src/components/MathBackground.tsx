@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { M } from "./Math";
 
 interface FloatingEquation {
@@ -70,38 +70,47 @@ const EQUATIONS: FloatingEquation[] = [
 
 export const MathBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 });
+  const spotlightRef = useRef<HTMLDivElement | null>(null);
+  const mouseRef = useRef<{ x: number; y: number; targetX: number; targetY: number }>({
+    x: -1000,
+    y: -1000,
+    targetX: -1000,
+    targetY: -1000,
+  });
 
-  // Interactive mouse tracking for spotlight
+  // High-performance direct DOM mouse tracking (Zero React re-renders!)
   useEffect(() => {
     let animId: number;
-    let targetX = -1000;
-    let targetY = -1000;
-    let currentX = -1000;
-    let currentY = -1000;
+    let isActive = true;
 
     const onMouseMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
+      mouseRef.current.targetX = e.clientX;
+      mouseRef.current.targetY = e.clientY;
     };
 
-    const updateMouse = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: currentX, y: currentY });
-      animId = requestAnimationFrame(updateMouse);
+    const updateSpotlight = () => {
+      if (!isActive) return;
+      const m = mouseRef.current;
+      m.x += (m.targetX - m.x) * 0.1;
+      m.y += (m.targetY - m.y) * 0.1;
+
+      if (spotlightRef.current && m.x > -500) {
+        spotlightRef.current.style.background = `radial-gradient(550px circle at ${m.x}px ${m.y}px, rgba(45, 212, 191, 0.12), transparent 75%)`;
+      }
+      animId = requestAnimationFrame(updateSpotlight);
     };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
-    animId = requestAnimationFrame(updateMouse);
+    animId = requestAnimationFrame(updateSpotlight);
 
     return () => {
+      isActive = false;
       window.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(animId);
     };
   }, []);
 
-  // Living Ambient Harmonic Wave Simulation
+  // Living Ambient Harmonic Wave Simulation (Low CPU, 60fps, paused when hidden)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -111,6 +120,7 @@ export const MathBackground: React.FC = () => {
     let animId: number;
     let t = 0;
     let running = true;
+    let lastTime = performance.now();
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -120,38 +130,51 @@ export const MathBackground: React.FC = () => {
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
-    const render = () => {
+    // Pause when tab is inactive to preserve battery and CPU
+    const onVisibilityChange = () => {
+      running = !document.hidden;
+      if (running) {
+        lastTime = performance.now();
+        animId = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    const render = (now: number) => {
       if (!running) return;
-      t += 0.012;
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+      t += dt * 0.75;
 
       const w = canvas.width;
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
       const isDark = document.documentElement.classList.contains("dark");
+      const mouse = mouseRef.current;
 
       // 3 Harmonic wave streams (Fourier modes)
       const ribbons = [
         {
-          color: isDark ? "rgba(45, 212, 191, 0.15)" : "rgba(15, 118, 110, 0.10)",
+          color: isDark ? "rgba(45, 212, 191, 0.14)" : "rgba(15, 118, 110, 0.09)",
           baseY: h * 0.28,
-          amplitude: 36,
+          amplitude: 34,
           freq: 0.0022,
           speed: 1,
           dash: [6, 8],
         },
         {
-          color: isDark ? "rgba(251, 191, 36, 0.12)" : "rgba(217, 119, 6, 0.08)",
+          color: isDark ? "rgba(251, 191, 36, 0.11)" : "rgba(217, 119, 6, 0.07)",
           baseY: h * 0.58,
-          amplitude: 44,
+          amplitude: 42,
           freq: 0.0017,
           speed: 0.75,
           dash: [],
         },
         {
-          color: isDark ? "rgba(244, 63, 94, 0.10)" : "rgba(225, 29, 72, 0.06)",
+          color: isDark ? "rgba(244, 63, 94, 0.09)" : "rgba(225, 29, 72, 0.05)",
           baseY: h * 0.88,
-          amplitude: 38,
+          amplitude: 36,
           freq: 0.002,
           speed: 1.1,
           dash: [4, 6],
@@ -164,15 +187,15 @@ export const MathBackground: React.FC = () => {
         ctx.strokeStyle = r.color;
         ctx.lineWidth = 1.75;
 
-        for (let x = 0; x <= w; x += 15) {
+        for (let x = 0; x <= w; x += 18) {
           const yOffset =
             Math.sin(x * r.freq + t * r.speed) * r.amplitude +
             Math.cos(x * r.freq * 2 - t * 0.5) * (r.amplitude * 0.35);
 
           // Subtle cursor interaction: waves pluck gently when mouse is near
-          const distToMouse = Math.hypot(x - mousePos.x, r.baseY + yOffset - mousePos.y);
-          const cursorForce = Math.max(0, 1 - distToMouse / 240);
-          const bend = Math.sin(t * 3 + x * 0.02) * cursorForce * 32;
+          const distToMouse = Math.hypot(x - mouse.x, r.baseY + yOffset - mouse.y);
+          const cursorForce = Math.max(0, 1 - distToMouse / 220);
+          const bend = Math.sin(t * 3 + x * 0.02) * cursorForce * 30;
 
           const y = r.baseY + yOffset + bend;
 
@@ -183,17 +206,17 @@ export const MathBackground: React.FC = () => {
       }
 
       // Faint particle constellation along wave nodal points
-      for (let i = 0; i < 16; i++) {
-        const px = ((i * 150 + t * 24) % (w + 100)) - 50;
+      for (let i = 0; i < 14; i++) {
+        const px = ((i * 160 + t * 24) % (w + 100)) - 50;
         const py = h * 0.3 + Math.sin(px * 0.003 + t) * 60 + Math.cos(i + t * 0.5) * 40;
 
         ctx.fillStyle = isDark
           ? i % 2 === 0
-            ? "rgba(45, 212, 191, 0.28)"
-            : "rgba(251, 191, 36, 0.22)"
+            ? "rgba(45, 212, 191, 0.25)"
+            : "rgba(251, 191, 36, 0.2)"
           : i % 2 === 0
-          ? "rgba(15, 118, 110, 0.16)"
-          : "rgba(217, 119, 6, 0.14)";
+          ? "rgba(15, 118, 110, 0.15)"
+          : "rgba(217, 119, 6, 0.12)";
 
         ctx.beginPath();
         ctx.arc(px, py, (i % 3) + 1.5, 0, Math.PI * 2);
@@ -203,26 +226,25 @@ export const MathBackground: React.FC = () => {
       animId = requestAnimationFrame(render);
     };
 
-    render();
+    animId = requestAnimationFrame(render);
 
     return () => {
       running = false;
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       cancelAnimationFrame(animId);
     };
-  }, [mousePos]);
+  }, []); // Empty dependency array: starts ONCE! Zero overhead!
 
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
     >
-      {/* 1. Ambient Interactive Mouse Spotlight */}
+      {/* 1. Ambient Interactive Mouse Spotlight (Direct DOM, zero React re-renders) */}
       <div
-        className="absolute inset-0 transition-opacity duration-500 opacity-60 dark:opacity-35 pointer-events-none"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(45, 212, 191, 0.12), transparent 75%)`,
-        }}
+        ref={spotlightRef}
+        className="absolute inset-0 transition-opacity duration-300 opacity-60 dark:opacity-35 pointer-events-none"
       />
 
       {/* 2. Living Wave Harmonic Canvas */}
@@ -236,8 +258,8 @@ export const MathBackground: React.FC = () => {
         {EQUATIONS.map((eq) => (
           <div
             key={eq.id}
-            className={`absolute rounded-2xl border-2 border-line bg-card/75 dark:bg-card/65 backdrop-blur-md px-3.5 py-2 shadow-xs transition-transform duration-1000 ease-out ${
-              eq.side === "left" ? "start-4" : "end-4"
+            className={`absolute rounded-2xl border border-line bg-card/75 dark:bg-card/65 backdrop-blur-md px-3.5 py-2 shadow-xs transition-transform duration-1000 ease-out ${
+              eq.side === "left" ? "start-5" : "end-5"
             }`}
             style={{
               top: `${eq.topPercent}%`,

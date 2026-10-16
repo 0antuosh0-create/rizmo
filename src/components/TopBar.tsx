@@ -7,7 +7,7 @@ import {
   BookOpenText,
   Table2,
   GraduationCap,
-  Sparkles,
+  Sigma,
 } from "lucide-react";
 import { fa } from "./Math";
 
@@ -23,6 +23,49 @@ interface TopBarProps {
   progressPct: number;
 }
 
+// Circular mathematical progress ring (inspired by diffeq-notes)
+function ProgressRing({ pct }: { pct: number }) {
+  const r = 12;
+  const c = 2 * Math.PI * r;
+  return (
+    <div
+      className="relative flex items-center justify-center cursor-default select-none"
+      title={`پیشرفت مطالعه: ${fa(pct)}٪`}
+    >
+      <svg width="32" height="32" viewBox="0 0 32 32" className="-rotate-90">
+        <circle
+          cx="16"
+          cy="16"
+          r={r}
+          fill="none"
+          strokeWidth="3"
+          className="stroke-card2 dark:stroke-card3"
+        />
+        <circle
+          cx="16"
+          cy="16"
+          r={r}
+          fill="none"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray={c}
+          strokeDashoffset={c * (1 - Math.min(100, Math.max(0, pct)) / 100)}
+          className="stroke-accent transition-all duration-700 ease-out"
+        />
+      </svg>
+      <span className="absolute text-[8.5px] font-black text-ink tabular-nums">
+        {fa(pct)}
+      </span>
+    </div>
+  );
+}
+
+const NAV_VIEWS: { id: View; label: string; icon: typeof BookOpenText }[] = [
+  { id: "problems", label: "حل‌المسائل تشریحی", icon: BookOpenText },
+  { id: "cheatsheet", label: "فرمول‌ها و شبیه‌ساز", icon: Table2 },
+  { id: "exam", label: "آزمون خودسنجی", icon: GraduationCap },
+];
+
 export const TopBar: React.FC<TopBarProps> = ({
   view,
   setView,
@@ -33,104 +76,97 @@ export const TopBar: React.FC<TopBarProps> = ({
   progressPct,
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b-2 border-line bg-card/95 backdrop-blur-md transition-colors shadow-xs">
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 gap-3">
+    <header className="sticky top-0 z-40 w-full border-b border-line bg-card/90 dark:bg-card/85 backdrop-blur-md transition-colors shadow-xs">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-3 px-4 md:px-6">
         {/* Right side: Mobile Menu Button + App Brand */}
         <div className="flex items-center gap-3">
           <button
             onClick={onMenu}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:translate-x-0.5 active:translate-y-0.5 lg:hidden cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card hover:bg-card2 text-ink shadow-2xs transition-all active:scale-95 lg:hidden cursor-pointer"
             aria-label="فهرست و منو"
           >
             <Menu size={18} />
           </button>
 
-          <div className="flex items-center gap-2.5">
-            {/* Luminous Mint-Teal Neo-Brutalist Logo */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 text-white shadow-xs">
-              <Sparkles size={20} strokeWidth={2.4} />
+          <button
+            onClick={() => setView("problems")}
+            className="flex items-center gap-2.5 text-start cursor-pointer hover:opacity-90 active:scale-[0.99] transition-all"
+          >
+            {/* Elegant Vector Sigma Badge */}
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 text-white shadow-[0_0_15px_rgba(15,118,110,0.25)] dark:shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+              <Sigma size={18} strokeWidth={2.6} />
             </div>
-            <div>
+            <div className="min-w-0 leading-tight">
               <div className="flex items-center gap-2">
-                <span className="text-base sm:text-lg font-black text-ink tracking-tight">
+                <span className="text-[13.5px] sm:text-[14.5px] font-black text-ink tracking-tight">
                   ریاضی مهندسی
                 </span>
-                <span className="hidden sm:inline-flex rounded-full border-2 border-line bg-amber-400/25 text-amber-900 dark:text-amber-200 px-2.5 py-0.2 text-[10.5px] font-black shadow-xs">
+                <span className="hidden sm:inline-flex rounded-md border border-line bg-amber-400/20 text-amber-900 dark:text-amber-200 px-1.5 py-0.5 text-[9.5px] font-black shadow-2xs">
                   کارشناسی
                 </span>
               </div>
-              <p className="text-[11px] font-bold text-soft hidden xs:flex items-center gap-1">
-                <span>حل‌المسائل تشریحی، فرمول‌ها و خودآزمایی</span>
+              <p className="text-[10px] sm:text-[10.5px] font-bold text-faint truncate hidden xs:block">
+                حل‌المسائل تشریحی، فرمول‌ها و خودآزمایی
               </p>
             </div>
-          </div>
+          </button>
         </div>
 
-        {/* Center: Desktop Navigation Pills with Tactile Neo-Brutalist Border */}
-        <nav className="hidden md:flex items-center gap-1.5 rounded-2xl border-2 border-line bg-card2/80 p-1 shadow-xs">
-          <button
-            onClick={() => setView("problems")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
-              view === "problems"
-                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
-                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
-            }`}
-          >
-            <BookOpenText size={15} />
-            <span>حل‌المسائل تشریحی</span>
-          </button>
-
-          <button
-            onClick={() => setView("cheatsheet")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
-              view === "cheatsheet"
-                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
-                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
-            }`}
-          >
-            <Table2 size={15} />
-            <span>فرمول‌ها و شبیه‌ساز</span>
-          </button>
-
-          <button
-            onClick={() => setView("exam")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
-              view === "exam"
-                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
-                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
-            }`}
-          >
-            <GraduationCap size={15} />
-            <span>آزمون خودسنجی</span>
-          </button>
+        {/* Center: Desktop Navigation Segmented Bar */}
+        <nav className="mx-auto hidden md:flex items-center gap-1 rounded-2xl border border-line bg-card/90 dark:bg-card2/80 p-1 shadow-2xs">
+          {NAV_VIEWS.map((v) => {
+            const Icon = v.icon;
+            const isActive = view === v.id;
+            return (
+              <button
+                key={v.id}
+                onClick={() => setView(v.id)}
+                className={`flex items-center gap-1.5 rounded-xl px-4 py-1.5 text-[12.5px] font-black transition-all duration-150 cursor-pointer ${
+                  isActive
+                    ? "border border-teal-600/50 bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
+                    : "border border-transparent text-soft hover:bg-card2 hover:text-ink"
+                }`}
+              >
+                <Icon size={14} />
+                <span>{v.label}</span>
+              </button>
+            );
+          })}
         </nav>
 
-        {/* Left side: Search, Theme Toggle, Overall Progress */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Luminous Mint Progress Chip with Tactile Border */}
-          <div className="hidden sm:flex items-center gap-1.5 rounded-xl border-2 border-line bg-teal-500/15 text-teal-900 dark:text-teal-300 px-3 py-1 text-xs font-black shadow-xs">
-            <span className="h-2 w-2 rounded-full bg-teal-500 animate-pulse" />
-            <span>{fa(progressPct)}٪ حل‌شده</span>
-          </div>
-
+        {/* Left side: Search, Progress Ring, Theme Toggle */}
+        <div className="ms-auto flex items-center gap-2">
           {/* Quick Search Shortcut Button */}
           <button
             onClick={onSearch}
-            className="flex h-9 items-center gap-2 rounded-xl border-2 border-line bg-card hover:bg-card2 px-2.5 sm:px-3 text-xs font-bold text-soft hover:text-ink shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
+            className="hidden sm:flex items-center gap-2 rounded-xl border border-line bg-card hover:bg-card2 px-3 py-1.5 text-xs font-bold text-ink shadow-2xs hover:border-accent hover:shadow-xs transition-all cursor-pointer"
             title="جستجوی سریع (Ctrl + K)"
           >
-            <Search size={14} className="text-faint" />
-            <span className="hidden sm:inline">جستجو...</span>
-            <kbd className="hidden md:inline font-mono text-[10px] bg-card2 border-2 border-line px-1.5 py-0.5 rounded-lg text-faint font-bold">
-              Ctrl K
+            <Search size={14} className="text-soft" />
+            <span className="text-soft">جستجو…</span>
+            <kbd className="font-mono text-[10px] bg-card2 border border-line px-1.5 py-0.5 rounded text-faint font-bold">
+              CTRL K
             </kbd>
           </button>
+
+          <button
+            onClick={onSearch}
+            className="flex sm:hidden h-9 w-9 items-center justify-center rounded-xl border border-line bg-card text-ink shadow-2xs transition-transform active:scale-95 cursor-pointer"
+            aria-label="جستجو"
+          >
+            <Search size={16} />
+          </button>
+
+          {/* Elegant Circular Progress Ring */}
+          <div className="rounded-xl border border-line bg-card p-1 shadow-2xs">
+            <ProgressRing pct={progressPct} />
+          </div>
 
           {/* Dark / Light Mode Toggle */}
           <button
             onClick={toggleDark}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
-            aria-label={dark ? "تغییر به تم روز (کاغذ گرم)" : "تغییر به تم شب (شارکول عمیق)"}
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card hover:bg-card2 text-ink shadow-2xs transition-all active:scale-95 cursor-pointer"
+            aria-label={dark ? "تغییر به تم روز" : "تغییر به تم شب"}
           >
             {dark ? (
               <Sun size={17} className="text-amber-400" />
