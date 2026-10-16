@@ -58,26 +58,26 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl overflow-hidden rounded-2xl border border-line bg-card shadow-2xl"
+        className="w-full max-w-2xl overflow-hidden rounded-2xl border-2 border-line bg-card shadow-2xl"
         onClick={(e) => e.stopPropagation()}
         dir="rtl"
       >
-        {/* Search Input Bar with Warm Styling */}
-        <div className="flex items-center gap-3 border-b border-line bg-card2/80 px-4 py-3.5">
-          <Search size={18} className="text-orange-500" />
+        {/* Search Input Bar with Tactile Border */}
+        <div className="flex items-center gap-3 border-b-2 border-line bg-card2/80 px-4 py-3.5">
+          <Search size={18} className="text-teal-600 dark:text-teal-400" />
           <input
             ref={inputRef}
             type="text"
             placeholder="جستجو در تمام مسائل تشریحی، فرمول‌ها، مراجع و مباحث..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent text-sm font-bold text-ink placeholder:text-faint focus:outline-hidden"
+            className="flex-1 bg-transparent text-sm font-black text-ink placeholder:text-faint focus:outline-hidden"
           />
           <button
             onClick={onClose}
-            className="rounded-xl p-1 text-soft hover:bg-card hover:text-ink cursor-pointer"
+            className="rounded-xl border-2 border-line bg-card p-1 text-soft hover:bg-card2 hover:text-ink cursor-pointer shadow-xs active:translate-x-0.5 active:translate-y-0.5"
           >
-            <X size={18} />
+            <X size={16} />
           </button>
         </div>
 
@@ -93,8 +93,8 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
           {/* Matched Problems */}
           {matchedProblems.length > 0 && (
             <div className="space-y-2">
-              <p className="text-[11px] font-bold text-faint flex items-center gap-1.5">
-                <BookOpen size={13} className="text-orange-500" />
+              <p className="text-[11px] font-black text-faint flex items-center gap-1.5">
+                <BookOpen size={13} className="text-teal-600 dark:text-teal-400" />
                 مسائل تشریحی حل‌شده ({fa(matchedProblems.length)})
               </p>
               <div className="space-y-1.5">
@@ -105,13 +105,13 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
                       onNavigateToProblem(p.chapterId, p.id);
                       onClose();
                     }}
-                    className="flex w-full items-center justify-between rounded-xl border border-line bg-card2/50 p-2.5 text-start hover:bg-card hover:border-orange-500 transition-all cursor-pointer"
+                    className="flex w-full items-center justify-between rounded-xl border-2 border-line bg-card2/50 p-2.5 text-start hover:bg-card shadow-xs transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm font-bold text-ink truncate">{p.title}</p>
+                      <p className="text-xs sm:text-sm font-black text-ink truncate">{p.title}</p>
                       <p className="text-[11px] text-soft truncate mt-0.5 font-medium">{p.source}</p>
                     </div>
-                    <span className="ms-2 shrink-0 rounded-md bg-card px-2 py-0.5 text-[10px] font-bold text-orange-600 dark:text-orange-300 border border-line">
+                    <span className="ms-2 shrink-0 rounded-lg bg-card px-2 py-0.5 text-[10px] font-black text-teal-800 dark:text-teal-300 border-2 border-line shadow-xs">
                       {p.subTopicLabel}
                     </span>
                   </button>
@@ -123,7 +123,7 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
           {/* Matched Formulas */}
           {matchedFormulas.length > 0 && (
             <div className="space-y-2">
-              <p className="text-[11px] font-bold text-faint flex items-center gap-1.5">
+              <p className="text-[11px] font-black text-faint flex items-center gap-1.5">
                 <Table2 size={13} className="text-amber-500" />
                 فرمول‌ها و قضایای کلیدی ({fa(matchedFormulas.length)})
               </p>
@@ -135,13 +135,13 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
                       onNavigateToView("cheatsheet");
                       onClose();
                     }}
-                    className="flex w-full items-center justify-between rounded-xl border border-line bg-card2/50 p-2.5 text-start hover:bg-card hover:border-amber-500 transition-all cursor-pointer"
+                    className="flex w-full items-center justify-between rounded-xl border-2 border-line bg-card2/50 p-2.5 text-start hover:bg-card shadow-xs transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm font-bold text-ink truncate">{f.title}</p>
+                      <p className="text-xs sm:text-sm font-black text-ink truncate">{f.title}</p>
                       <p className="text-[11px] text-soft truncate mt-0.5 font-medium">{f.description}</p>
                     </div>
-                    <span className="ms-2 shrink-0 rounded-md bg-card px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 border border-line">
+                    <span className="ms-2 shrink-0 rounded-lg bg-card px-2 py-0.5 text-[10px] font-black text-amber-800 dark:text-amber-300 border-2 border-line shadow-xs">
                       {f.category}
                     </span>
                   </button>
@@ -158,7 +158,7 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
         </div>
 
         {/* Modal Footer Key Hints */}
-        <div className="flex items-center justify-between border-t border-line bg-card2/80 px-4 py-2.5 text-[11px] text-faint">
+        <div className="flex items-center justify-between border-t-2 border-line bg-card2/80 px-4 py-2.5 text-[11px] text-faint font-bold">
           <span>کلید ESC برای بستن</span>
           <span>سامانه حل‌المسائل ریاضی مهندسی</span>
         </div>

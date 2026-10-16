@@ -34,19 +34,19 @@ export const CheatSheetView: React.FC = () => {
   return (
     <div className="space-y-6 pb-20">
       {/* Header */}
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
+      <div className="relative overflow-hidden rounded-2xl border-2 border-line bg-card p-5 sm:p-6 shadow-sm">
+        <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
 
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-line pb-4 mb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 text-white shadow-xs font-black">
               <Table2 size={20} />
             </span>
             <div>
               <h1 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
                 فرمول‌نامه سریع و اطلس قضایا (Cheat Sheet)
               </h1>
-              <p className="text-xs sm:text-sm text-soft font-medium">
+              <p className="text-xs sm:text-sm text-soft font-bold">
                 دسترسی فوری به فرمول‌های کلیدی، تعاریف و شبیه‌سازهای شهودی ریاضی مهندسی
               </p>
             </div>
@@ -60,12 +60,12 @@ export const CheatSheetView: React.FC = () => {
               placeholder="جستجو در فرمول‌ها..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-line bg-card2 py-2 ps-9 pe-3 text-xs font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-orange-500 focus:bg-card transition-all"
+              className="w-full rounded-xl border-2 border-line bg-card2 py-2 ps-9 pe-3 text-xs font-bold text-ink placeholder:text-faint focus:outline-hidden focus:bg-card shadow-xs transition-all"
             />
           </div>
         </div>
 
-        {/* Chapter Tabs */}
+        {/* Chapter Tabs with Tactile Neo-Brutalism */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           {CHAPTERS.map((ch) => {
             const isActive = activeChapter === ch.id;
@@ -73,19 +73,19 @@ export const CheatSheetView: React.FC = () => {
               <button
                 key={ch.id}
                 onClick={() => setActiveChapter(ch.id)}
-                className={`flex items-center gap-2.5 p-3 rounded-2xl border text-start transition-all cursor-pointer ${
+                className={`flex items-center gap-2.5 p-3.5 rounded-2xl border-2 border-line text-start transition-all cursor-pointer shadow-xs active:translate-x-0.5 active:translate-y-0.5 ${
                   isActive
-                    ? "border-orange-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/05 to-transparent text-orange-600 dark:text-orange-300 font-bold shadow-xs scale-[1.01]"
-                    : "border-line bg-card2 hover:bg-card text-soft hover:text-ink"
+                    ? "bg-card shadow-md -translate-x-0.5 -translate-y-0.5"
+                    : "bg-card2 hover:bg-card text-soft hover:text-ink"
                 }`}
               >
-                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-bold ${
-                  isActive ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs" : "bg-card border border-line text-ink"
+                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border-2 border-line text-xs font-black shadow-xs ${
+                  isActive ? "bg-gradient-to-br from-teal-500 to-emerald-600 text-white" : "bg-card text-ink"
                 }`}>
-                  {ch.id === "fourier" ? <Layers size={14} /> : ch.id === "pde" ? <Flame size={14} /> : <Compass size={14} />}
+                  {ch.id === "fourier" ? <Layers size={15} /> : ch.id === "pde" ? <Flame size={15} /> : <Compass size={15} />}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-xs sm:text-sm font-bold truncate">{ch.title}</p>
+                  <p className="text-xs sm:text-sm font-black truncate">{ch.title}</p>
                   <p className="text-[11px] text-faint truncate font-medium">{ch.englishTitle}</p>
                 </div>
               </button>
@@ -105,7 +105,7 @@ export const CheatSheetView: React.FC = () => {
         {activeChapter === "complex" && <ComplexVisualizer />}
       </section>
 
-      {/* Formula Cards Grid */}
+      {/* Formula Cards Grid with Tactile 2px Borders */}
       <section className="space-y-4">
         <h2 className="text-sm sm:text-base font-black text-ink flex items-center justify-between">
           <span>فرمول‌های استاندارد آزمون:</span>
@@ -118,28 +118,28 @@ export const CheatSheetView: React.FC = () => {
           {filteredFormulas.map((f) => (
             <div
               key={f.id}
-              className="relative overflow-hidden rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs flex flex-col justify-between space-y-3 hover:border-orange-500/40 transition-colors"
+              className="relative overflow-hidden rounded-2xl border-2 border-line bg-card p-4 sm:p-5 shadow-xs flex flex-col justify-between space-y-3 hover:shadow-md hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
             >
-              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
+              <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
 
               <div>
-                <div className="flex items-center justify-between gap-2 border-b border-line pb-2.5 mb-2">
+                <div className="flex items-center justify-between gap-2 border-b-2 border-line pb-2.5 mb-2">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-md bg-orange-500/10 text-orange-600 dark:text-orange-300 px-2 py-0.5 text-[11px] font-bold border border-orange-500/25">
+                    <span className="rounded-lg border-2 border-line bg-card2 px-2.5 py-0.5 text-[11px] font-black text-teal-800 dark:text-teal-300 shadow-xs">
                       {f.category}
                     </span>
-                    <h3 className="text-sm font-bold text-ink">{f.title}</h3>
+                    <h3 className="text-sm font-black text-ink">{f.title}</h3>
                   </div>
 
                   <button
                     onClick={() => handleCopy(f.id, f.latex)}
-                    className="cursor-pointer inline-flex items-center gap-1 rounded-lg border border-line bg-card2 px-2.5 py-1 text-[11px] font-medium text-soft hover:text-ink hover:bg-card transition-all"
+                    className="cursor-pointer inline-flex items-center gap-1 rounded-xl border-2 border-line bg-card2 px-2.5 py-1 text-[11px] font-bold text-soft hover:text-ink hover:bg-card shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5"
                     title="کپی فرمول به صورت کد LaTeX"
                   >
                     {copiedId === f.id ? (
                       <>
                         <Check size={12} className="text-emerald-500" />
-                        <span className="text-emerald-600 dark:text-emerald-400 font-bold">کپی شد</span>
+                        <span className="text-emerald-700 dark:text-emerald-400 font-bold">کپی شد</span>
                       </>
                     ) : (
                       <>
@@ -150,7 +150,7 @@ export const CheatSheetView: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="rounded-xl bg-card2/50 border border-line p-3 my-2 text-ink">
+                <div className="rounded-xl bg-card2/60 border-2 border-line p-3 my-2 text-ink shadow-xs">
                   <MB tex={f.latex} />
                 </div>
 
@@ -160,8 +160,8 @@ export const CheatSheetView: React.FC = () => {
               </div>
 
               {f.conditions && (
-                <div className="rounded-lg bg-orange-500/[0.06] p-2.5 text-[11px] leading-5 font-medium text-ink border-s-4 border-s-orange-500">
-                  <span className="text-orange-600 dark:text-orange-400 font-bold block mb-0.5">شرایط کاربرد:</span>
+                <div className="rounded-xl bg-teal-500/[0.08] p-2.5 text-[11px] leading-5 font-bold text-ink border-2 border-line shadow-xs">
+                  <span className="text-teal-700 dark:text-teal-400 font-black block mb-0.5">شرایط کاربرد:</span>
                   <T text={f.conditions} />
                 </div>
               )}

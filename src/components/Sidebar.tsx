@@ -49,10 +49,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onViewChange("problems");
               onCloseMobile?.();
             }}
-            className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex w-full items-center gap-2.5 rounded-xl border-2 px-3.5 py-2 text-xs font-black transition-all cursor-pointer ${
               currentView === "problems"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
-                : "text-soft hover:bg-card2 hover:text-ink"
+                ? "border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
+                : "border-transparent text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
             <BookOpenText size={16} />
@@ -64,10 +64,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onViewChange("cheatsheet");
               onCloseMobile?.();
             }}
-            className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex w-full items-center gap-2.5 rounded-xl border-2 px-3.5 py-2 text-xs font-black transition-all cursor-pointer ${
               currentView === "cheatsheet"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
-                : "text-soft hover:bg-card2 hover:text-ink"
+                ? "border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
+                : "border-transparent text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
             <Table2 size={16} />
@@ -79,10 +79,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onViewChange("exam");
               onCloseMobile?.();
             }}
-            className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex w-full items-center gap-2.5 rounded-xl border-2 px-3.5 py-2 text-xs font-black transition-all cursor-pointer ${
               currentView === "exam"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
-                : "text-soft hover:bg-card2 hover:text-ink"
+                ? "border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
+                : "border-transparent text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
             <GraduationCap size={16} />
@@ -106,10 +106,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               return (
                 <div
                   key={ch.id}
-                  className={`rounded-2xl border transition-all overflow-hidden ${
+                  className={`rounded-2xl border-2 transition-all overflow-hidden ${
                     isActive
-                      ? "border-orange-500/40 bg-gradient-to-br from-amber-500/10 via-orange-500/05 to-transparent shadow-xs"
-                      : "border-line bg-card/60 hover:bg-card hover:border-orange-500/30"
+                      ? "border-line bg-card shadow-xs"
+                      : "border-line/70 bg-card/60 hover:bg-card hover:border-line"
                   }`}
                 >
                   <button
@@ -122,16 +122,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border text-xs font-bold shadow-xs ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border-2 border-line text-xs font-black shadow-xs ${
                           isActive
-                            ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white border-orange-500 shadow-orange-500/20"
-                            : "bg-card2 border-line text-ink"
+                            ? "bg-gradient-to-br from-teal-500 to-emerald-600 text-white"
+                            : "bg-card2 text-ink"
                         }`}
                       >
                         {ch.id === "fourier" ? <Layers size={15} /> : ch.id === "pde" ? <Flame size={15} /> : <Compass size={15} />}
                       </span>
                       <div className="min-w-0">
-                        <p className="text-xs font-bold text-ink truncate">
+                        <p className="text-xs font-black text-ink truncate">
                           فصل {fa(ch.number)}: {ch.title}
                         </p>
                         <p className="text-[10.5px] text-faint truncate font-medium">
@@ -143,13 +143,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                   {/* Subtopics list if active */}
                   {isActive && (
-                    <div className="border-t border-line/70 bg-card2/40 px-3 py-2 space-y-1">
+                    <div className="border-t-2 border-line bg-card2/50 px-3 py-2 space-y-1">
                       {ch.subTopics.slice(1).map((st) => (
                         <div
                           key={st.id}
-                          className="flex items-center gap-1.5 text-[11px] text-soft font-medium py-0.5"
+                          className="flex items-center gap-1.5 text-[11px] text-soft font-bold py-0.5"
                         >
-                          <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
                           <span className="truncate">{st.label}</span>
                         </div>
                       ))}
@@ -162,8 +162,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* References Card with Warm Friendly Tone */}
-        <div className="rounded-2xl border border-line bg-card2/60 p-3.5 space-y-2 text-[11px]">
-          <div className="flex items-center gap-1.5 font-bold text-ink">
+        <div className="rounded-2xl border-2 border-line bg-card2/60 p-3.5 space-y-2 text-[11px] shadow-xs">
+          <div className="flex items-center gap-1.5 font-black text-ink">
             <Award size={14} className="text-amber-500" />
             <span>مراجع علمی و دانشگاهی:</span>
           </div>
@@ -177,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Footer Info */}
-      <div className="pt-4 border-t border-line text-[10.5px] text-faint text-center font-medium">
+      <div className="pt-4 border-t-2 border-line text-[10.5px] text-faint text-center font-bold">
         ریاضی مهندسی دانشگاهی • مقطع کارشناسی
       </div>
     </div>

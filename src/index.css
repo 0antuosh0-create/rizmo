@@ -3,109 +3,117 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ */
-/*  LIGHT MODE: Warm Oat Cream, Sunset Amber & Tactile Neo-Brutalism  */
+/*  LIGHT: Warm Architectural Paper & Crisp Tactile Neobrutalism      */
 /* ------------------------------------------------------------------ */
 :root {
-  --bg: #fcfaf6;              /* Warm buttery oatmeal canvas */
-  --bg-rgb: 252, 250, 246;
+  --bg: #f8f6f0;              /* Warm soothing paper */
+  --bg-rgb: 248, 246, 240;
 
-  --card: #ffffff;            /* Crisp warm milk surface */
+  --card: #ffffff;            /* Pure white tactile card */
   --card-rgb: 255, 255, 255;
 
-  --card2: #f6efe4;           /* Warm toasted almond secondary */
-  --card2-rgb: 246, 239, 228;
+  --card2: #f0ebe0;           /* Soft almond paper secondary */
+  --card2-rgb: 240, 235, 224;
 
-  --card3: #ebe0d0;           /* Deeper toasted surface */
-  --card3-rgb: 235, 224, 208;
+  --card3: #e6dfd2;
+  --card3-rgb: 230, 223, 210;
 
-  --ink: #211c18;             /* Deep Roasted Espresso Ink */
-  --ink-rgb: 33, 28, 24;
+  --ink: #111110;             /* Crisp deep ink */
+  --ink-rgb: 17, 17, 16;
 
-  --soft: #5e5349;            /* Warm hazelnut clay */
-  --soft-rgb: 94, 83, 73;
+  --soft: #38342c;            /* Warm clay */
+  --soft-rgb: 56, 52, 44;
 
-  --faint: #9c8e80;           /* Soft warm stone */
-  --faint-rgb: 156, 142, 128;
+  --faint: #6b6555;
+  --faint-rgb: 107, 101, 85;
 
-  --line: #26201b;            /* Solid Espresso Neo-Brutalist Border */
-  --line-rgb: 38, 32, 27;
+  --line: #111110;            /* Solid Neobrutalist line */
+  --line-rgb: 17, 17, 16;
 
-  --line-soft: #dfd5c5;
+  --line-soft: #ddd4be;
 
-  --accent: #ea580c;          /* Radiant Sunset Coral-Tangerine */
-  --accent-rgb: 234, 88, 12;
-  --accent-hover: #c2410c;
+  --accent: #0f766e;          /* Rich Pine Teal */
+  --accent-rgb: 15, 118, 110;
+  --accent-hover: #115e59;
   --accent-ink: #ffffff;
 
-  --coral: #f43f5e;
-  --amber: #f59e0b;
-  --gold: #d97706;
-  --mint: #059669;
-  --teal: #0d9488;
-  --lavender: #7c3aed;
+  --gold: #d97706;            /* Warm Amber Gold */
+  --coral: #e11d48;           /* Energetic Rose-Coral */
+  --mint: #059669;            /* Fresh Garden Mint */
+  --violet: #7c3aed;          /* Amethyst Purple */
 
-  --math: #211c18;
+  --math: #111110;
 
-  /* Tactile Physical Neo-Brutalist Drop Shadows */
-  --shadow-xs: 1.5px 1.5px 0px #26201b;
-  --shadow-sm: 2.5px 2.5px 0px #26201b;
-  --shadow-md: 4px 4px 0px #26201b;
-  --shadow-lg: 6px 6px 0px #26201b;
-  --shadow-xl: 8px 8px 0px #26201b;
+  --glow-a: rgba(15, 118, 110, 0.12);
+  --glow-b: rgba(217, 119, 6, 0.08);
+  --glow-c: rgba(124, 58, 237, 0.05);
+  --grid-dot: rgba(17, 17, 16, 0.08);
+  --grid-line: rgba(17, 17, 16, 0.035);
+
+  /* Tactile Modern Neobrutalist Shadows */
+  --shadow-xs: 1.5px 1.5px 0px #111110;
+  --shadow-sm: 2.5px 2.5px 0px #111110;
+  --shadow-md: 3.5px 3.5px 0px #111110;
+  --shadow-lg: 5.5px 5.5px 0px #111110;
+  --shadow-xl: 8px 8px 0px #111110;
 
   color-scheme: light;
 }
 
 /* ------------------------------------------------------------------ */
-/*  DARK MODE: Cozy Midnight Coffee & Warm Amber Neo-Brutalism        */
+/*  DARK: High-Contrast Rich Charcoal + Luminous Mint & Gold          */
 /* ------------------------------------------------------------------ */
 .dark {
-  --bg: #14110f;              /* Cozy dark espresso beans */
-  --bg-rgb: 20, 17, 15;
+  --bg: #0a0c10;              /* Rich deep space charcoal */
+  --bg-rgb: 10, 12, 16;
 
-  --card: #1c1713;            /* Roasted cedar surface */
-  --card-rgb: 28, 23, 19;
+  --card: #12151d;            /* Elevated dark surface */
+  --card-rgb: 18, 21, 29;
 
-  --card2: #261f1a;           /* Elevated warm surface */
-  --card2-rgb: 38, 31, 26;
+  --card2: #1a1e29;           /* Secondary dark surface */
+  --card2-rgb: 26, 30, 41;
 
-  --card3: #332922;
-  --card3-rgb: 51, 41, 34;
+  --card3: #222838;
+  --card3-rgb: 34, 40, 56;
 
-  --ink: #fef7ee;             /* Warm soft cream text */
-  --ink-rgb: 254, 247, 238;
+  --ink: #f8fafc;             /* Luminous crisp white */
+  --ink-rgb: 248, 250, 252;
 
-  --soft: #b8ada2;            /* Light almond stone text */
-  --soft-rgb: 184, 173, 162;
+  --soft: #cbd5e1;            /* Clear soft slate */
+  --soft-rgb: 203, 213, 225;
 
-  --faint: #7a6e63;
-  --faint-rgb: 122, 110, 99;
+  --faint: #94a3b8;           /* Readable faint */
+  --faint-rgb: 148, 163, 184;
 
-  --line: #45372d;            /* Rich Warm Bronze-Espresso Border */
-  --line-rgb: 69, 55, 45;
+  --line: #2e3646;            /* Crisp structural slate border */
+  --line-rgb: 46, 54, 70;
 
-  --line-soft: #2c221b;
+  --line-soft: #1e2430;
 
-  --accent: #fb923c;          /* Luminous Apricot-Tangerine */
-  --accent-rgb: 251, 146, 60;
-  --accent-hover: #f97316;
-  --accent-ink: #18120e;
+  --accent: #2dd4bf;          /* Luminous Electric Mint-Teal */
+  --accent-rgb: 45, 212, 191;
+  --accent-hover: #14b8a6;
+  --accent-ink: #041019;
 
-  --coral: #fb7185;
-  --amber: #fbbf24;
-  --gold: #f59e0b;
-  --mint: #34d399;
-  --teal: #2dd4bf;
-  --lavender: #a78bfa;
+  --gold: #fbbf24;            /* Luminous Amber Gold */
+  --coral: #fb7185;           /* Coral Rose */
+  --mint: #34d399;            /* Mint */
+  --violet: #a78bfa;          /* Amethyst */
 
-  --math: #fef7ee;
+  --math: #f8fafc;
 
-  /* Tactile Physical Neo-Brutalist Dark Shadows */
-  --shadow-xs: 1.5px 1.5px 0px #0b0908;
-  --shadow-sm: 2.5px 2.5px 0px #0b0908;
-  --shadow-md: 4px 4px 0px #0b0908;
-  --shadow-lg: 6px 6px 0px #0b0908;
-  --shadow-xl: 8px 8px 0px #0b0908;
+  --glow-a: rgba(45, 212, 191, 0.16);
+  --glow-b: rgba(251, 191, 36, 0.09);
+  --glow-c: rgba(167, 139, 250, 0.08);
+  --grid-dot: rgba(45, 212, 191, 0.09);
+  --grid-line: rgba(255, 255, 255, 0.03);
+
+  /* Luminous Dark Neobrutalist Depth: Solid Block + Lit Edge */
+  --shadow-xs: 1.5px 1.5px 0px #000000, 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-sm: 2.5px 2.5px 0px #000000, 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-md: 3.5px 3.5px 0px #000000, 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --shadow-lg: 5.5px 5.5px 0px #000000, 0 0 0 1px rgba(45, 212, 191, 0.45);
+  --shadow-xl: 8px 8px 0px #000000, 0 0 0 1px rgba(45, 212, 191, 0.5);
 
   color-scheme: dark;
 }
@@ -122,6 +130,20 @@ body {
   color: var(--ink);
   overflow-x: clip;
   position: relative;
+  background-image:
+    /* Luminous top-right ethereal glow */
+    radial-gradient(65rem 38rem at 85% -5%, var(--glow-a), transparent 60%),
+    /* Warm amber atmospheric aura on left */
+    radial-gradient(55rem 32rem at 10% 25%, var(--glow-b), transparent 55%),
+    /* Subtle violet deep vignette at bottom */
+    radial-gradient(60rem 40rem at 50% 105%, var(--glow-c), transparent 65%),
+    /* Fine engineered math micro-dot matrix */
+    radial-gradient(circle, var(--grid-dot) 1.25px, transparent 1.25px),
+    /* Structural blueprint macro grid lines */
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px, 120px 120px, 120px 120px;
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -135,19 +157,14 @@ body {
 /* ---------- Focus & Accessible States ---------- */
 :focus-visible {
   outline: 2.5px solid var(--accent);
-  outline-offset: 2.5px;
+  outline-offset: 2px;
   border-radius: 8px;
 }
 
-/* ---------- Tactile Warm Neo-Brutalist Utilities ---------- */
+/* ---------- Tactile Neo-Brutalist Component Utilities ---------- */
 .neo-box {
   border: 2px solid var(--line);
   box-shadow: var(--shadow-sm);
-}
-
-.neo-box-md {
-  border: 2px solid var(--line);
-  box-shadow: var(--shadow-md);
 }
 
 .neo-card {
@@ -194,18 +211,6 @@ body {
   font-size: 0.75rem;
 }
 
-.neo-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  border: 1.75px solid var(--line);
-  box-shadow: var(--shadow-xs);
-  font-weight: 700;
-  padding: 0.2rem 0.65rem;
-  border-radius: 0.65rem;
-  font-size: 0.75rem;
-}
-
 .scroll-mt-header {
   scroll-margin-top: 5.5rem;
 }
@@ -228,8 +233,8 @@ body {
 .math-block {
   direction: ltr !important;
   text-align: center;
-  margin: 0.6rem 0;
-  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  padding: 0.4rem 0;
 }
 
 .math-block .katex-display {

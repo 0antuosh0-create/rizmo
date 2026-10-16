@@ -46,8 +46,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           </button>
 
           <div className="flex items-center gap-2.5">
-            {/* Friendly Warm Sunset Neo-Brutalist Logo */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs">
+            {/* Luminous Mint-Teal Neo-Brutalist Logo */}
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-teal-500 via-emerald-500 to-teal-600 text-white shadow-xs">
               <Sparkles size={20} strokeWidth={2.4} />
             </div>
             <div>
@@ -72,7 +72,7 @@ export const TopBar: React.FC<TopBarProps> = ({
             onClick={() => setView("problems")}
             className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "problems"
-                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
                 : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
@@ -84,7 +84,7 @@ export const TopBar: React.FC<TopBarProps> = ({
             onClick={() => setView("cheatsheet")}
             className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "cheatsheet"
-                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
                 : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
@@ -96,7 +96,7 @@ export const TopBar: React.FC<TopBarProps> = ({
             onClick={() => setView("exam")}
             className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "exam"
-                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                ? "border-2 border-line bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400 text-white dark:text-slate-950 shadow-xs"
                 : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
@@ -107,9 +107,9 @@ export const TopBar: React.FC<TopBarProps> = ({
 
         {/* Left side: Search, Theme Toggle, Overall Progress */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Cheerful Progress Chip with Tactile Border */}
-          <div className="hidden sm:flex items-center gap-1.5 rounded-xl border-2 border-line bg-emerald-500/15 px-3 py-1 text-xs font-black text-emerald-800 dark:text-emerald-300 shadow-xs">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          {/* Luminous Mint Progress Chip with Tactile Border */}
+          <div className="hidden sm:flex items-center gap-1.5 rounded-xl border-2 border-line bg-teal-500/15 text-teal-900 dark:text-teal-300 px-3 py-1 text-xs font-black shadow-xs">
+            <span className="h-2 w-2 rounded-full bg-teal-500 animate-pulse" />
             <span>{fa(progressPct)}٪ حل‌شده</span>
           </div>
 
@@ -130,12 +130,12 @@ export const TopBar: React.FC<TopBarProps> = ({
           <button
             onClick={toggleDark}
             className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
-            aria-label={dark ? "تغییر به تم روز (روشن)" : "تغییر به تم شب (کافه تاریک)"}
+            aria-label={dark ? "تغییر به تم روز (کاغذ گرم)" : "تغییر به تم شب (شارکول عمیق)"}
           >
             {dark ? (
               <Sun size={17} className="text-amber-400" />
             ) : (
-              <Moon size={17} className="text-orange-600" />
+              <Moon size={17} className="text-teal-700" />
             )}
           </button>
         </div>
