@@ -128,7 +128,7 @@ export default function App() {
   const totalPercentage = Math.round((totalSolved / ALL_PROBLEMS.length) * 100);
 
   return (
-    <div className="min-h-screen w-full max-w-full relative bg-paper text-ink font-sans selection:bg-violet-600 selection:text-white">
+    <div className="min-h-screen w-full max-w-full relative bg-paper text-ink font-sans selection:bg-orange-500 selection:text-white">
       <MathBackground />
 
       <TopBar
@@ -143,7 +143,7 @@ export default function App() {
 
       <div className="mx-auto flex max-w-[1440px] w-full min-w-0 items-start">
         {/* Desktop Sidebar */}
-        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-[280px] shrink-0 border-e border-line bg-card/80 backdrop-blur-md lg:block self-start overflow-hidden shadow-xs z-30">
+        <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-[280px] shrink-0 border-e border-line bg-card/85 dark:bg-card/75 backdrop-blur-md lg:block self-start overflow-hidden shadow-xs z-30">
           <Sidebar
             currentView={view}
             onViewChange={handleSetView}
@@ -230,16 +230,16 @@ export default function App() {
         }}
       />
 
-      {/* Mobile Bottom Thumb Ergonomic Dock */}
+      {/* Mobile Bottom Thumb Ergonomic Dock with Warm Sunset Gradient */}
       <nav
         aria-label="ناوبری سریع موبایل"
         className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-around border-t border-line bg-card/95 px-2 py-2 backdrop-blur-md md:hidden shadow-sm"
       >
         <button
           onClick={() => handleSetView("problems")}
-          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1 transition-all cursor-pointer ${
+          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 transition-all cursor-pointer ${
             view === "problems"
-              ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold shadow-xs"
+              ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white font-black shadow-xs"
               : "text-soft hover:text-ink font-medium"
           }`}
         >
@@ -249,9 +249,9 @@ export default function App() {
 
         <button
           onClick={() => handleSetView("cheatsheet")}
-          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1 transition-all cursor-pointer ${
+          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 transition-all cursor-pointer ${
             view === "cheatsheet"
-              ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold shadow-xs"
+              ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white font-black shadow-xs"
               : "text-soft hover:text-ink font-medium"
           }`}
         >
@@ -261,9 +261,9 @@ export default function App() {
 
         <button
           onClick={() => handleSetView("exam")}
-          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1 transition-all cursor-pointer ${
+          className={`flex flex-col items-center gap-1 rounded-xl px-3 py-1.5 transition-all cursor-pointer ${
             view === "exam"
-              ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold shadow-xs"
+              ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white font-black shadow-xs"
               : "text-soft hover:text-ink font-medium"
           }`}
         >

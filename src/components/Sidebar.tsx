@@ -51,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}
             className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
               currentView === "problems"
-                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
                 : "text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
@@ -66,7 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}
             className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
               currentView === "cheatsheet"
-                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
                 : "text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
@@ -81,7 +81,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}
             className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold transition-all cursor-pointer ${
               currentView === "exam"
-                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
                 : "text-soft hover:bg-card2 hover:text-ink"
             }`}
           >
@@ -106,10 +106,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               return (
                 <div
                   key={ch.id}
-                  className={`rounded-xl border transition-all overflow-hidden ${
+                  className={`rounded-2xl border transition-all overflow-hidden ${
                     isActive
-                      ? "border-violet-500/40 bg-violet-500/[0.08]"
-                      : "border-line bg-card/60 hover:bg-card hover:border-violet-500/30"
+                      ? "border-orange-500/40 bg-gradient-to-br from-amber-500/10 via-orange-500/05 to-transparent shadow-xs"
+                      : "border-line bg-card/60 hover:bg-card hover:border-orange-500/30"
                   }`}
                 >
                   <button
@@ -122,19 +122,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border text-xs font-bold shadow-xs ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border text-xs font-bold shadow-xs ${
                           isActive
-                            ? "bg-gradient-to-br from-violet-600 to-indigo-600 text-white border-violet-500"
+                            ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white border-orange-500 shadow-orange-500/20"
                             : "bg-card2 border-line text-ink"
                         }`}
                       >
-                        {ch.id === "fourier" ? <Layers size={14} /> : ch.id === "pde" ? <Flame size={14} /> : <Compass size={14} />}
+                        {ch.id === "fourier" ? <Layers size={15} /> : ch.id === "pde" ? <Flame size={15} /> : <Compass size={15} />}
                       </span>
                       <div className="min-w-0">
                         <p className="text-xs font-bold text-ink truncate">
                           فصل {fa(ch.number)}: {ch.title}
                         </p>
-                        <p className="text-[10.5px] text-faint truncate">
+                        <p className="text-[10.5px] text-faint truncate font-medium">
                           {fa(solvedCount)} از {fa(chapterProblems.length)} حل‌شده ({fa(pct)}٪)
                         </p>
                       </div>
@@ -149,7 +149,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           key={st.id}
                           className="flex items-center gap-1.5 text-[11px] text-soft font-medium py-0.5"
                         >
-                          <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
                           <span className="truncate">{st.label}</span>
                         </div>
                       ))}
@@ -161,8 +161,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
 
-        {/* References Card */}
-        <div className="rounded-xl border border-line bg-card2/60 p-3 space-y-1.5 text-[11px]">
+        {/* References Card with Warm Friendly Tone */}
+        <div className="rounded-2xl border border-line bg-card2/60 p-3.5 space-y-2 text-[11px]">
           <div className="flex items-center gap-1.5 font-bold text-ink">
             <Award size={14} className="text-amber-500" />
             <span>مراجع علمی و دانشگاهی:</span>

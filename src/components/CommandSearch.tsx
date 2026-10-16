@@ -62,9 +62,9 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
         onClick={(e) => e.stopPropagation()}
         dir="rtl"
       >
-        {/* Search Input Bar */}
-        <div className="flex items-center gap-3 border-b border-line bg-card2/80 px-4 py-3">
-          <Search size={18} className="text-accent" />
+        {/* Search Input Bar with Warm Styling */}
+        <div className="flex items-center gap-3 border-b border-line bg-card2/80 px-4 py-3.5">
+          <Search size={18} className="text-orange-500" />
           <input
             ref={inputRef}
             type="text"
@@ -75,7 +75,7 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
           />
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-soft hover:bg-card hover:text-ink cursor-pointer"
+            className="rounded-xl p-1 text-soft hover:bg-card hover:text-ink cursor-pointer"
           >
             <X size={18} />
           </button>
@@ -94,7 +94,7 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
           {matchedProblems.length > 0 && (
             <div className="space-y-2">
               <p className="text-[11px] font-bold text-faint flex items-center gap-1.5">
-                <BookOpen size={13} className="text-accent" />
+                <BookOpen size={13} className="text-orange-500" />
                 مسائل تشریحی حل‌شده ({fa(matchedProblems.length)})
               </p>
               <div className="space-y-1.5">
@@ -105,13 +105,13 @@ export const CommandSearch: React.FC<CommandSearchProps> = ({
                       onNavigateToProblem(p.chapterId, p.id);
                       onClose();
                     }}
-                    className="flex w-full items-center justify-between rounded-xl border border-line bg-card2/50 p-2.5 text-start hover:bg-card hover:border-accent transition-all cursor-pointer"
+                    className="flex w-full items-center justify-between rounded-xl border border-line bg-card2/50 p-2.5 text-start hover:bg-card hover:border-orange-500 transition-all cursor-pointer"
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-xs sm:text-sm font-bold text-ink truncate">{p.title}</p>
                       <p className="text-[11px] text-soft truncate mt-0.5 font-medium">{p.source}</p>
                     </div>
-                    <span className="ms-2 shrink-0 rounded-md bg-card px-2 py-0.5 text-[10px] font-bold text-accent border border-line">
+                    <span className="ms-2 shrink-0 rounded-md bg-card px-2 py-0.5 text-[10px] font-bold text-orange-600 dark:text-orange-300 border border-line">
                       {p.subTopicLabel}
                     </span>
                   </button>

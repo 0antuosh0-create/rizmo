@@ -155,19 +155,19 @@ export const ComplexVisualizer: React.FC = () => {
     ctx.textAlign = "center";
     ctx.fillText("Im(z)", originX + 25, 25);
 
-    // Draw Integration Contour (Circle C)
+    // Draw Integration Contour (Circle C with Warm Glowing Stroke)
     const cX = originX + contourCenterX * scale;
     const cY = originY - contourCenterY * scale;
     const cR = contourRadius * scale;
 
     // Contour interior fill
-    ctx.fillStyle = "rgba(139, 92, 246, 0.12)";
+    ctx.fillStyle = "rgba(249, 115, 22, 0.1)";
     ctx.beginPath();
     ctx.arc(cX, cY, cR, 0, 2 * Math.PI);
     ctx.fill();
 
     // Contour border
-    ctx.strokeStyle = "#8b5cf6";
+    ctx.strokeStyle = "#f97316";
     ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.arc(cX, cY, cR, 0, 2 * Math.PI);
@@ -177,7 +177,7 @@ export const ComplexVisualizer: React.FC = () => {
     const arrowAngle = -Math.PI / 2;
     const ax = cX + cR * Math.cos(arrowAngle);
     const ay = cY + cR * Math.sin(arrowAngle);
-    ctx.fillStyle = "#8b5cf6";
+    ctx.fillStyle = "#f97316";
     ctx.beginPath();
     ctx.moveTo(ax - 5, ay - 5);
     ctx.lineTo(ax + 7, ay);
@@ -231,7 +231,7 @@ export const ComplexVisualizer: React.FC = () => {
     <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3 mb-4">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-600 text-white shadow-xs">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs">
             <Compass size={16} />
           </span>
           <div>
@@ -240,14 +240,16 @@ export const ComplexVisualizer: React.FC = () => {
           </div>
         </div>
 
-        {/* Preset Selector */}
+        {/* Preset Selector with Warm Gradient */}
         <div className="flex flex-wrap items-center gap-1 rounded-xl border border-line bg-card2 p-1">
           {PRESETS.map((p) => (
             <button
               key={p.id}
               onClick={() => setSelectedPresetId(p.id)}
               className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all cursor-pointer ${
-                selectedPresetId === p.id ? "bg-violet-600 text-white shadow-xs" : "text-soft hover:text-ink"
+                selectedPresetId === p.id
+                  ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
+                  : "text-soft hover:text-ink"
               }`}
             >
               {p.name}
@@ -258,7 +260,7 @@ export const ComplexVisualizer: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
         {/* Canvas Area */}
-        <div className="lg:col-span-2 relative w-full overflow-hidden rounded-xl border border-line bg-slate-950/90 aspect-[4/3] sm:aspect-[16/10]">
+        <div className="lg:col-span-2 relative w-full overflow-hidden rounded-xl border border-line bg-stone-950/90 aspect-[4/3] sm:aspect-[16/10]">
           <canvas
             ref={canvasRef}
             width={700}
@@ -266,13 +268,13 @@ export const ComplexVisualizer: React.FC = () => {
             className="w-full h-full block"
           />
 
-          <div className="absolute bottom-2 start-3 flex flex-wrap items-center gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700 text-[11px] font-medium text-white">
+          <div className="absolute bottom-2 start-3 flex flex-wrap items-center gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-stone-700 text-[11px] font-medium text-white">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 bg-red-500 inline-block rounded-xs" />
               قطب‌های تابع (تکینگی‌ها)
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full border-2 border-violet-400 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full border-2 border-orange-400 inline-block" />
               مسیر کانتور بسته انتگرال (C)
             </span>
           </div>
@@ -283,7 +285,7 @@ export const ComplexVisualizer: React.FC = () => {
           <div className="rounded-xl border border-line bg-card2/70 p-3.5 space-y-3">
             <h4 className="text-xs font-bold text-ink flex items-center justify-between">
               <span>تنظیم شعاع کانتور (R):</span>
-              <span className="text-violet-600 dark:text-violet-300 tabular-nums font-bold">{fa(contourRadius.toFixed(1))}</span>
+              <span className="text-orange-600 dark:text-orange-300 tabular-nums font-bold">{fa(contourRadius.toFixed(1))}</span>
             </h4>
             <input
               type="range"
@@ -292,12 +294,12 @@ export const ComplexVisualizer: React.FC = () => {
               step={0.1}
               value={contourRadius}
               onChange={(e) => setContourRadius(Number(e.target.value))}
-              className="w-full accent-violet-600 cursor-pointer"
+              className="w-full accent-orange-500 cursor-pointer"
             />
 
             <h4 className="text-xs font-bold text-ink flex items-center justify-between pt-1">
               <span>موقعیت مرکز کانتور (Re):</span>
-              <span className="text-violet-600 dark:text-violet-300 tabular-nums font-bold">{fa(contourCenterX.toFixed(1))}</span>
+              <span className="text-orange-600 dark:text-orange-300 tabular-nums font-bold">{fa(contourCenterX.toFixed(1))}</span>
             </h4>
             <input
               type="range"
@@ -306,7 +308,7 @@ export const ComplexVisualizer: React.FC = () => {
               step={0.1}
               value={contourCenterX}
               onChange={(e) => setContourCenterX(Number(e.target.value))}
-              className="w-full accent-violet-600 cursor-pointer"
+              className="w-full accent-orange-500 cursor-pointer"
             />
           </div>
 
@@ -333,8 +335,8 @@ export const ComplexVisualizer: React.FC = () => {
           </div>
 
           {/* Live Residue Formula Calculation */}
-          <div className="rounded-xl border border-violet-500/25 bg-violet-500/10 p-3.5 space-y-2 text-ink">
-            <p className="text-xs font-bold text-violet-600 dark:text-violet-300">نتیجه قضیه مانده‌ها:</p>
+          <div className="rounded-xl border border-orange-500/25 bg-orange-500/10 p-3.5 space-y-2 text-ink">
+            <p className="text-xs font-bold text-orange-600 dark:text-orange-300">نتیجه قضیه مانده‌ها:</p>
             <div className="text-[12px] font-mono leading-6 dir-ltr text-start space-y-1" dir="ltr">
               <p className="text-soft font-bold">
                 ∮_C f(z) dz = 2πi · ∑ Res

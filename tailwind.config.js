@@ -1,3 +1,12 @@
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -12,29 +21,21 @@ export default {
         mono: ["Fira Code", "monospace"],
       },
       colors: {
-        paper: "var(--bg)",
-        card: "var(--card)",
-        card2: "var(--card2)",
-        ink: "var(--ink)",
-        soft: "var(--soft)",
-        faint: "var(--faint)",
-        line: "var(--line)",
+        paper: withOpacity("--bg-rgb"),
+        card: withOpacity("--card-rgb"),
+        card2: withOpacity("--card2-rgb"),
+        card3: withOpacity("--card3-rgb"),
+        ink: withOpacity("--ink-rgb"),
+        soft: withOpacity("--soft-rgb"),
+        faint: withOpacity("--faint-rgb"),
+        line: withOpacity("--line-rgb"),
         "line-soft": "var(--line-soft)",
-        accent: "var(--accent)",
+        accent: withOpacity("--accent-rgb"),
         "accent-hover": "var(--accent-hover)",
         "accent-ink": "var(--accent-ink)",
         gold: "var(--gold)",
-        teal: {
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-        },
-        violet: {
-          400: "#a78bfa",
-          500: "#8b5cf6",
-          600: "#7c3aed",
-          700: "#6d28d9",
-        },
+        coral: "var(--coral)",
+        mint: "var(--mint)",
       },
       boxShadow: {
         "xs": "var(--shadow-xs)",
@@ -42,8 +43,10 @@ export default {
         "md": "var(--shadow-md)",
         "lg": "var(--shadow-lg)",
         "xl": "var(--shadow-xl)",
-        "glow": "0 0 25px -5px rgba(139, 92, 246, 0.3)",
-        "glow-emerald": "0 0 25px -5px rgba(16, 185, 129, 0.3)",
+        "warm": "0 10px 25px -4px rgba(234, 88, 12, 0.18), 0 4px 10px -2px rgba(234, 88, 12, 0.1)",
+        "glow-orange": "0 0 25px -3px rgba(234, 88, 12, 0.4)",
+        "glow-mint": "0 0 25px -3px rgba(16, 185, 129, 0.4)",
+        "glow-amber": "0 0 25px -3px rgba(245, 158, 11, 0.4)",
       },
     },
   },

@@ -15,6 +15,9 @@ import {
   GraduationCap,
   SlidersHorizontal,
   Check,
+  Coffee,
+  Heart,
+  Smile,
 } from "lucide-react";
 import { ChapterId, Difficulty, SourceCategory, SolvedProblem } from "../types";
 import { CHAPTERS, getProblemsByChapter } from "../data";
@@ -36,7 +39,7 @@ interface DropdownOption {
   description?: string;
 }
 
-// Custom styled popover dropdown (replaces native OS select)
+// Custom warm styled popover dropdown
 function CustomFilterDropdown({
   label,
   value,
@@ -75,25 +78,25 @@ function CustomFilterDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-bold text-ink transition-all cursor-pointer shadow-xs ${
           isOpen
-            ? "border-violet-500 bg-card2 ring-1 ring-violet-500/30"
-            : "border-line bg-card hover:bg-card2 hover:border-violet-500/40"
+            ? "border-orange-500 bg-card2 ring-2 ring-orange-500/20"
+            : "border-line bg-card hover:bg-card2 hover:border-orange-500/40"
         }`}
       >
         <span className="flex items-center gap-2 truncate">
-          <Icon size={14} className="text-violet-500 shrink-0" />
+          <Icon size={14} className="text-orange-500 shrink-0" />
           <span className="truncate">{selectedOption.label}</span>
         </span>
         <ChevronDown
           size={14}
           className={`shrink-0 text-soft transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-violet-500" : ""
+            isOpen ? "rotate-180 text-orange-500" : ""
           }`}
         />
       </button>
 
-      {/* Floating Popover Menu */}
+      {/* Floating Popover Menu with Warm Personality */}
       {isOpen && (
-        <div className="absolute top-full start-0 z-30 mt-1.5 w-full min-w-[240px] rounded-xl border border-line bg-card p-1.5 shadow-xl space-y-0.5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute top-full start-0 z-30 mt-1.5 w-full min-w-[240px] rounded-2xl border border-line bg-card p-1.5 shadow-xl space-y-0.5 animate-in fade-in zoom-in-95 duration-150">
           {options.map((opt) => {
             const isSelected = opt.value === value;
             return (
@@ -104,21 +107,21 @@ function CustomFilterDropdown({
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-xs font-bold transition-all cursor-pointer ${
+                className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-start text-xs font-bold transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-violet-500/15 text-violet-600 dark:text-violet-300"
+                    ? "bg-gradient-to-r from-orange-500/15 to-amber-500/10 text-orange-600 dark:text-orange-300 font-black"
                     : "text-soft hover:bg-card2 hover:text-ink"
                 }`}
               >
                 <div className="min-w-0">
-                  <p className="truncate font-bold">{opt.label}</p>
+                  <p className="truncate">{opt.label}</p>
                   {opt.description && (
                     <p className="text-[10px] text-faint truncate font-medium mt-0.5">
                       {opt.description}
                     </p>
                   )}
                 </div>
-                {isSelected && <Check size={14} className="text-violet-500 shrink-0" />}
+                {isSelected && <Check size={14} className="text-orange-500 shrink-0" />}
               </button>
             );
           })}
@@ -196,9 +199,9 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
 
   const difficultyOptions: DropdownOption[] = [
     { value: "all", label: "همه سطوح دشواری", description: "آسان، متوسط و سخت" },
-    { value: "easy", label: "سطح آسان", description: "مسائل مقدماتی و امتحانی ساده" },
-    { value: "medium", label: "سطح متوسط", description: "استاندارد امتحانات دانشگاهی" },
-    { value: "hard", label: "سطح سخت / چالشی", description: "کنکور کارشناسی ارشد و مسائل پیشرفته" },
+    { value: "easy", label: "سطح آسان و روان", description: "مسائل مقدماتی و امتحانی ساده" },
+    { value: "medium", label: "سطح متوسط و کاربردی", description: "استاندارد امتحانات دانشگاهی" },
+    { value: "hard", label: "سطح چالشی و جذاب", description: "کنکور کارشناسی ارشد و مسائل پیشرفته" },
   ];
 
   const sourceCategoryOptions: DropdownOption[] = [
@@ -216,10 +219,52 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
 
   return (
     <div className="space-y-6 pb-20">
-      {/* Chapter Navigation Cards */}
+      {/* Friendly Warm Hero Greeting Pill */}
+      <div className="rounded-2xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-orange-500/08 to-rose-500/05 p-3.5 sm:p-4 text-xs font-bold text-ink flex flex-wrap items-center justify-between gap-3 shadow-xs">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs">
+            <Coffee size={14} />
+          </span>
+          <span className="text-soft">
+            <strong className="text-ink font-black">سلام دوست مهندس!</strong> یک فنجان چای یا قهوه بنوش و با گام‌های روشن، گره مسائل سخت رو باز کن.
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 ms-auto">
+          <span className="rounded-full bg-card/80 border border-line px-2.5 py-0.5 text-[11px] text-soft">
+            {fa(rawProblems.length)} مسئله تشریحی گام‌به‌گام
+          </span>
+        </div>
+      </div>
+
+      {/* Playful & Charming Chapter Navigation Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {CHAPTERS.map((ch) => {
           const isActive = activeChapter === ch.id;
+
+          const chapterStyles: Record<
+            ChapterId,
+            { iconBg: string; activeBorder: string; activeGlow: string }
+          > = {
+            fourier: {
+              iconBg: "from-amber-500 to-orange-500",
+              activeBorder: "border-orange-500/60 bg-gradient-to-br from-amber-500/15 via-orange-500/05 to-transparent",
+              activeGlow: "via-orange-500",
+            },
+            pde: {
+              iconBg: "from-orange-500 to-rose-500",
+              activeBorder: "border-rose-500/60 bg-gradient-to-br from-rose-500/15 via-orange-500/05 to-transparent",
+              activeGlow: "via-rose-500",
+            },
+            complex: {
+              iconBg: "from-emerald-500 to-teal-600",
+              activeBorder: "border-emerald-500/60 bg-gradient-to-br from-emerald-500/15 via-teal-500/05 to-transparent",
+              activeGlow: "via-emerald-500",
+            },
+          };
+
+          const s = chapterStyles[ch.id];
+
           return (
             <button
               key={ch.id}
@@ -227,44 +272,42 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
                 onSelectChapter(ch.id);
                 setSelectedSubTopic("all");
               }}
-              className={`relative overflow-hidden p-4 rounded-2xl border text-start transition-all cursor-pointer ${
+              className={`relative overflow-hidden p-4 sm:p-4.5 rounded-2xl border text-start transition-all cursor-pointer ${
                 isActive
-                  ? "border-violet-500/50 bg-gradient-to-br from-violet-600/15 via-violet-600/5 to-transparent text-violet-600 dark:text-violet-300 shadow-sm"
+                  ? `${s.activeBorder} text-ink shadow-sm scale-[1.01]`
                   : "border-line bg-card hover:bg-card2 text-soft hover:text-ink shadow-xs"
               }`}
             >
               {isActive && (
-                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+                <div
+                  className={`absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent ${s.activeGlow} to-transparent`}
+                />
               )}
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2.5">
                 <span
-                  className={`flex h-8 w-8 items-center justify-center rounded-xl text-xs font-black shadow-xs transition-colors ${
-                    isActive
-                      ? "bg-gradient-to-br from-violet-600 to-indigo-600 text-white shadow-violet-500/20"
-                      : "bg-card2 border border-line text-ink"
-                  }`}
+                  className={`flex h-9 w-9 items-center justify-center rounded-xl text-white text-xs font-black shadow-xs bg-gradient-to-br ${s.iconBg}`}
                 >
-                  {ch.id === "fourier" ? <Layers size={16} /> : ch.id === "pde" ? <Flame size={16} /> : <Compass size={16} />}
+                  {ch.id === "fourier" ? <Layers size={17} /> : ch.id === "pde" ? <Flame size={17} /> : <Compass size={17} />}
                 </span>
-                <span className="text-[11px] font-bold text-faint">
+                <span className="text-[11px] font-bold text-faint bg-card2 px-2 py-0.5 rounded-full border border-line">
                   فصل {fa(ch.number)}
                 </span>
               </div>
-              <h2 className="text-base font-black text-ink">{ch.title}</h2>
+              <h2 className="text-base font-black text-ink tracking-tight">{ch.title}</h2>
               <p className="text-xs text-soft font-medium mt-1 line-clamp-1">{ch.subtitle}</p>
             </button>
           );
         })}
       </div>
 
-      {/* Chapter Overview & Progress Bar */}
+      {/* Chapter Overview & Cheerful Progress Bar */}
       <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="rounded-md bg-violet-500/10 border border-violet-500/25 text-violet-600 dark:text-violet-300 px-2.5 py-0.5 text-xs font-bold">
+              <span className="rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-600 dark:text-orange-300 px-3 py-0.5 text-xs font-bold">
                 بانک حل‌المسائل تشریحی
               </span>
               <span className="text-xs text-soft font-medium">
@@ -279,7 +322,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
             </p>
           </div>
 
-          {/* Stats Chips */}
+          {/* Cheerful Stats Chips */}
           <div className="flex flex-wrap items-center gap-2 ms-auto">
             <span className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card2 px-3 py-1.5 text-xs font-bold text-ink shadow-xs">
               <CheckCircle2 size={14} className="text-emerald-500" />
@@ -291,22 +334,24 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
               <span>{fa(bookmarkedInChapter)} نشان‌شده</span>
             </span>
 
-            <span className="inline-flex items-center gap-1 rounded-xl border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 text-xs font-bold text-violet-600 dark:text-violet-300 shadow-xs">
+            <span className="inline-flex items-center gap-1 rounded-xl border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-xs font-bold text-orange-600 dark:text-orange-300 shadow-xs">
               <span>{fa(completionPercent)}٪ تکمیل فصل</span>
             </span>
           </div>
         </div>
 
-        {/* Progress Bar with Gradient */}
-        <div className="h-2 rounded-full bg-card2 border border-line overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-l from-violet-600 via-indigo-500 to-emerald-400 transition-all duration-500"
-            style={{ width: `${completionPercent}%` }}
-          />
+        {/* Cheerful Warm Progress Bar */}
+        <div className="space-y-1.5">
+          <div className="h-2.5 rounded-full bg-card2 border border-line overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-l from-amber-400 via-orange-500 to-emerald-400 transition-all duration-500"
+              style={{ width: `${completionPercent}%` }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Filter & Search Bar */}
+      {/* Filter & Search Bar with Warm Styling */}
       <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-sm space-y-4">
         {/* Search & Reset */}
         <div className="flex flex-wrap items-center gap-3">
@@ -317,7 +362,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
               placeholder="جستجو در متن سوالات، عنوان، یا دانشگاه/مرجع..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-line bg-card2 py-2.5 ps-9 pe-3 text-xs sm:text-sm font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-violet-500 focus:bg-card transition-all"
+              className="w-full rounded-xl border border-line bg-card2 py-2.5 ps-9 pe-3 text-xs sm:text-sm font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-orange-500 focus:bg-card transition-all"
             />
           </div>
 
@@ -331,7 +376,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
           </button>
         </div>
 
-        {/* Subtopic Filters */}
+        {/* Subtopic Filters with Warm Glowing Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
           <span className="text-xs font-bold text-soft shrink-0 flex items-center gap-1 pe-1">
             <Filter size={13} />
@@ -341,9 +386,9 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
             <button
               key={st.id}
               onClick={() => setSelectedSubTopic(st.id)}
-              className={`shrink-0 rounded-xl px-3 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+              className={`shrink-0 rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                 selectedSubTopic === st.id
-                  ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xs"
+                  ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
                   : "border border-line bg-card text-soft hover:text-ink hover:bg-card2"
               }`}
             >
@@ -383,7 +428,10 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
       {/* Problem Cards Feed */}
       <div className="space-y-4">
         <div className="flex items-center justify-between text-xs font-bold text-soft px-1">
-          <span>نمایش {fa(filteredProblems.length)} مسئله منطبق</span>
+          <span className="flex items-center gap-1">
+            <Sparkles size={13} className="text-amber-500" />
+            نمایش {fa(filteredProblems.length)} مسئله منطبق
+          </span>
           <span>فصل {chapterInfo.title}</span>
         </div>
 
@@ -396,7 +444,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
             </p>
             <button
               onClick={handleResetFilters}
-              className="mt-2 rounded-xl bg-violet-600 text-white px-4 py-2 text-xs font-bold shadow-xs cursor-pointer hover:bg-violet-700 transition-all"
+              className="mt-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white px-5 py-2 text-xs font-bold shadow-xs cursor-pointer hover:opacity-90 transition-all"
             >
               پاک کردن همه فیلترها
             </button>

@@ -80,10 +80,10 @@ export const FourierVisualizer: React.FC = () => {
       }
       ctx.stroke();
 
-      // Draw Fourier Approximation Sum (Solid Vibrant Violet line)
+      // Draw Fourier Approximation Sum (Warm Glowing Coral line)
       ctx.setLineDash([]);
       ctx.lineWidth = 2.5;
-      ctx.strokeStyle = "#a78bfa"; // Vibrant violet
+      ctx.strokeStyle = "#f97316"; // Radiant Sunset Coral
       ctx.beginPath();
 
       for (let px = 0; px < width; px++) {
@@ -145,7 +145,7 @@ export const FourierVisualizer: React.FC = () => {
     <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3 mb-4">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-600 text-white shadow-xs">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs">
             <Layers size={16} />
           </span>
           <div>
@@ -160,7 +160,7 @@ export const FourierVisualizer: React.FC = () => {
             onClick={() => setWaveType("square")}
             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
               waveType === "square"
-                ? "bg-violet-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
                 : "text-soft hover:text-ink"
             }`}
           >
@@ -170,7 +170,7 @@ export const FourierVisualizer: React.FC = () => {
             onClick={() => setWaveType("sawtooth")}
             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
               waveType === "sawtooth"
-                ? "bg-violet-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
                 : "text-soft hover:text-ink"
             }`}
           >
@@ -180,7 +180,7 @@ export const FourierVisualizer: React.FC = () => {
             onClick={() => setWaveType("triangle")}
             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
               waveType === "triangle"
-                ? "bg-violet-600 text-white shadow-xs"
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
                 : "text-soft hover:text-ink"
             }`}
           >
@@ -189,8 +189,8 @@ export const FourierVisualizer: React.FC = () => {
         </div>
       </div>
 
-      {/* Canvas */}
-      <div className="relative w-full overflow-hidden rounded-xl border border-line bg-slate-950/90 aspect-[16/8] sm:aspect-[16/7]">
+      {/* Canvas with Cozy Ambient Slate Background */}
+      <div className="relative w-full overflow-hidden rounded-xl border border-line bg-stone-950/90 aspect-[16/8] sm:aspect-[16/7]">
         <canvas
           ref={canvasRef}
           width={800}
@@ -202,7 +202,7 @@ export const FourierVisualizer: React.FC = () => {
         <div className="absolute top-3 end-3 flex items-center gap-1.5">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-slate-700 bg-slate-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-slate-800"
+            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-stone-700 bg-stone-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-stone-800"
             title={isPlaying ? "توقف حرکت موج" : "اجرای موج"}
           >
             {isPlaying ? <Pause size={13} /> : <Play size={13} />}
@@ -211,7 +211,7 @@ export const FourierVisualizer: React.FC = () => {
             onClick={() => {
               timeRef.current = 0;
             }}
-            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-slate-700 bg-slate-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-slate-800"
+            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-stone-700 bg-stone-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-stone-800"
             title="شروع مجدد فاز"
           >
             <RotateCcw size={13} />
@@ -219,13 +219,13 @@ export const FourierVisualizer: React.FC = () => {
         </div>
 
         {/* Legend */}
-        <div className="absolute bottom-2 start-3 flex flex-wrap items-center gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700 text-[11px] font-medium text-white">
+        <div className="absolute bottom-2 start-3 flex flex-wrap items-center gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-stone-700 text-[11px] font-medium text-white">
           <span className="flex items-center gap-1.5">
-            <span className="w-3 h-0.5 bg-violet-400 inline-block" />
+            <span className="w-3 h-0.5 bg-orange-500 inline-block" />
             تقریب با {fa(harmonics)} هارمونیک
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-3 h-0.5 border-t border-dashed border-slate-400 inline-block" />
+            <span className="w-3 h-0.5 border-t border-dashed border-stone-400 inline-block" />
             سیگنال آرمانی
           </span>
         </div>
@@ -236,7 +236,7 @@ export const FourierVisualizer: React.FC = () => {
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs font-bold text-ink">
             <span>تعداد هارمونیک‌ها (N):</span>
-            <span className="tabular-nums text-violet-600 dark:text-violet-300 bg-violet-500/10 px-2 py-0.5 rounded-md border border-violet-500/25 font-bold">
+            <span className="tabular-nums text-orange-600 dark:text-orange-300 bg-orange-500/10 px-2 py-0.5 rounded-md border border-orange-500/25 font-bold">
               {fa(harmonics)} جمله
             </span>
           </div>
@@ -247,7 +247,7 @@ export const FourierVisualizer: React.FC = () => {
             step={1}
             value={harmonics}
             onChange={(e) => setHarmonics(Number(e.target.value))}
-            className="w-full accent-violet-600 cursor-pointer"
+            className="w-full accent-orange-500 cursor-pointer"
           />
           <div className="flex justify-between text-[10px] text-faint font-medium">
             <span>۱ (هارمونیک پایه)</span>
@@ -263,7 +263,7 @@ export const FourierVisualizer: React.FC = () => {
                 type="checkbox"
                 checked={showGibbs}
                 onChange={(e) => setShowGibbs(e.target.checked)}
-                className="rounded accent-violet-600 h-4 w-4"
+                className="rounded accent-orange-500 h-4 w-4"
               />
               <span className="inline-flex items-center gap-1 font-medium">
                 <Sparkles size={13} className="text-amber-500" />
@@ -273,7 +273,7 @@ export const FourierVisualizer: React.FC = () => {
           )}
 
           <div className="text-[11px] text-soft font-medium bg-card2/80 px-3 py-1.5 rounded-lg border border-line w-full text-center sm:text-start" dir="ltr">
-            <span className="font-mono text-violet-600 dark:text-violet-400">{formulas[waveType]}</span>
+            <span className="font-mono text-orange-600 dark:text-orange-400">{formulas[waveType]}</span>
           </div>
         </div>
       </div>

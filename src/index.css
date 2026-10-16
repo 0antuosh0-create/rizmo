@@ -3,71 +3,107 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ */
-/*  LIGHT MODE: Architectural Amethyst & Crisp Editorial Canvas       */
+/*  LIGHT MODE: Sunny Honey Oatmeal, Coral & Cozy Studio Canvas       */
 /* ------------------------------------------------------------------ */
 :root {
-  --bg: #f8f9fd;
+  --bg: #fbf9f5;
+  --bg-rgb: 251, 249, 245;
+
   --card: #ffffff;
-  --card2: #f1f3fa;
-  --card3: #e8ebf5;
-  --ink: #0f1325;
-  --soft: #474f6e;
-  --faint: #8890ab;
-  --line: #e2e6f2;
-  --line-soft: #edf0f8;
+  --card-rgb: 255, 255, 255;
 
-  --accent: #7c3aed;          /* Deep Electric Amethyst */
-  --accent-hover: #6d28d9;
+  --card2: #f4efe6;
+  --card2-rgb: 244, 239, 230;
+
+  --card3: #eae2d5;
+  --card3-rgb: 234, 226, 213;
+
+  --ink: #262220;
+  --ink-rgb: 38, 34, 32;
+
+  --soft: #635b54;
+  --soft-rgb: 99, 91, 84;
+
+  --faint: #968c82;
+  --faint-rgb: 150, 140, 130;
+
+  --line: #e6ded3;
+  --line-rgb: 230, 222, 211;
+
+  --line-soft: #efe8de;
+
+  --accent: #ea580c;          /* Radiant Sunset Coral-Tangerine */
+  --accent-rgb: 234, 88, 12;
+  --accent-hover: #c2410c;
   --accent-ink: #ffffff;
-  --accent-subtle: rgba(124, 58, 237, 0.08);
 
-  --gold: #d97706;            /* Warm Amber Gold */
-  --emerald: #059669;         /* Mint Emerald */
-  --cyan: #0891b2;            /* Vibrant Cyan */
-  --rose: #e11d48;
+  --coral: #f43f5e;           /* Playful Rose-Coral */
+  --amber: #f59e0b;           /* Warm Honey Gold */
+  --gold: #d97706;            /* Deep Amber */
+  --mint: #059669;            /* Fresh Garden Mint */
+  --teal: #0d9488;
+  --lavender: #7c3aed;
 
-  --math: #0f1325;
+  --math: #262220;
 
-  --shadow-xs: 0 1px 2px 0 rgba(15, 19, 37, 0.04);
-  --shadow-sm: 0 2px 8px 0 rgba(15, 19, 37, 0.06), 0 1px 2px 0 rgba(15, 19, 37, 0.04);
-  --shadow-md: 0 8px 24px -4px rgba(15, 19, 37, 0.08), 0 2px 6px -1px rgba(15, 19, 37, 0.04);
-  --shadow-lg: 0 16px 36px -6px rgba(15, 19, 37, 0.12), 0 4px 12px -2px rgba(15, 19, 37, 0.06);
-  --shadow-xl: 0 24px 48px -8px rgba(15, 19, 37, 0.16);
+  --shadow-xs: 0 1px 3px 0 rgba(38, 34, 32, 0.04);
+  --shadow-sm: 0 3px 10px 0 rgba(38, 34, 32, 0.05), 0 1px 2px 0 rgba(38, 34, 32, 0.03);
+  --shadow-md: 0 10px 25px -4px rgba(38, 34, 32, 0.07), 0 2px 8px -2px rgba(38, 34, 32, 0.04);
+  --shadow-lg: 0 20px 40px -8px rgba(38, 34, 32, 0.1), 0 4px 14px -3px rgba(38, 34, 32, 0.05);
+  --shadow-xl: 0 28px 56px -12px rgba(38, 34, 32, 0.14);
 
   color-scheme: light;
 }
 
 /* ------------------------------------------------------------------ */
-/*  DARK MODE: Deep Obsidian-Cosmos with High-Contrast Luminous Math   */
+/*  DARK MODE: Cozy Midnight Coffee & Warm Amber Lantern Glow         */
 /* ------------------------------------------------------------------ */
 .dark {
-  --bg: #0b0c16;
-  --card: #121424;
-  --card2: #181b30;
-  --card3: #1f233d;
-  --ink: #f8fafc;
-  --soft: #9ca3c1;
-  --faint: #656c8c;
-  --line: #252945;
-  --line-soft: #1a1d33;
+  --bg: #151210;
+  --bg-rgb: 21, 18, 16;
 
-  --accent: #8b5cf6;          /* Luminous Amethyst Violet */
-  --accent-hover: #a78bfa;
-  --accent-ink: #ffffff;
-  --accent-subtle: rgba(139, 92, 246, 0.14);
+  --card: #1e1915;
+  --card-rgb: 30, 25, 21;
 
-  --gold: #f59e0b;            /* Luminous Amber */
-  --emerald: #10b981;         /* Radiant Mint Emerald */
-  --cyan: #06b6d4;            /* Cyber Cyan */
-  --rose: #f43f5e;
+  --card2: #27211c;
+  --card2-rgb: 39, 33, 28;
 
-  --math: #f8fafc;
+  --card3: #322a24;
+  --card3-rgb: 50, 42, 36;
 
-  --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0 3px 10px 0 rgba(0, 0, 0, 0.45), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 30px -4px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 45px -8px rgba(0, 0, 0, 0.75), 0 4px 16px -3px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 30px 60px -12px rgba(0, 0, 0, 0.85);
+  --ink: #fef7ee;
+  --ink-rgb: 254, 247, 238;
+
+  --soft: #b5aba1;
+  --soft-rgb: 181, 171, 161;
+
+  --faint: #7d7267;
+  --faint-rgb: 125, 114, 103;
+
+  --line: #382e26;
+  --line-rgb: 56, 46, 38;
+
+  --line-soft: #2a221b;
+
+  --accent: #fb923c;          /* Cheerful Luminous Apricot-Tangerine */
+  --accent-rgb: 251, 146, 60;
+  --accent-hover: #f97316;
+  --accent-ink: #1c1511;
+
+  --coral: #fb7185;
+  --amber: #fbbf24;
+  --gold: #f59e0b;
+  --mint: #34d399;            /* Luminous Fresh Mint */
+  --teal: #2dd4bf;
+  --lavender: #a78bfa;
+
+  --math: #fef7ee;
+
+  --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 3px 12px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 30px -4px rgba(0, 0, 0, 0.55), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 22px 50px -8px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 32px 64px -12px rgba(0, 0, 0, 0.85);
 
   color-scheme: dark;
 }
@@ -106,7 +142,7 @@ body {
   background-color: var(--card);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.22s ease;
@@ -114,23 +150,7 @@ body {
 
 .card-modern:hover {
   box-shadow: var(--shadow-md);
-  border-color: rgba(139, 92, 246, 0.3);
-}
-
-.card-glowing-top {
-  position: relative;
-}
-
-.card-glowing-top::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  inset-inline: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  opacity: 0.8;
+  border-color: rgba(249, 115, 22, 0.3);
 }
 
 .scroll-mt-header {
@@ -187,15 +207,15 @@ body {
   scrollbar-width: thin;
 }
 
-/* ---------- Polished Scrollbars ---------- */
+/* ---------- Cozy Polished Scrollbars ---------- */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--line) var(--card2);
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--card2);

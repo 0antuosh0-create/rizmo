@@ -35,11 +35,11 @@ export const CheatSheetView: React.FC = () => {
     <div className="space-y-6 pb-20">
       {/* Header */}
       <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 text-white shadow-xs font-bold">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black">
               <Table2 size={20} />
             </span>
             <div>
@@ -60,7 +60,7 @@ export const CheatSheetView: React.FC = () => {
               placeholder="جستجو در فرمول‌ها..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-line bg-card2 py-2 ps-9 pe-3 text-xs font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-violet-500 focus:bg-card transition-all"
+              className="w-full rounded-xl border border-line bg-card2 py-2 ps-9 pe-3 text-xs font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-orange-500 focus:bg-card transition-all"
             />
           </div>
         </div>
@@ -73,14 +73,14 @@ export const CheatSheetView: React.FC = () => {
               <button
                 key={ch.id}
                 onClick={() => setActiveChapter(ch.id)}
-                className={`flex items-center gap-2.5 p-3 rounded-xl border text-start transition-all cursor-pointer ${
+                className={`flex items-center gap-2.5 p-3 rounded-2xl border text-start transition-all cursor-pointer ${
                   isActive
-                    ? "border-violet-500/50 bg-violet-500/10 text-violet-600 dark:text-violet-300 font-bold shadow-xs"
+                    ? "border-orange-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/05 to-transparent text-orange-600 dark:text-orange-300 font-bold shadow-xs scale-[1.01]"
                     : "border-line bg-card2 hover:bg-card text-soft hover:text-ink"
                 }`}
               >
-                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border text-xs font-bold ${
-                  isActive ? "bg-violet-600 text-white border-violet-600 shadow-xs" : "bg-card border-line text-ink"
+                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-xl text-xs font-bold ${
+                  isActive ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs" : "bg-card border border-line text-ink"
                 }`}>
                   {ch.id === "fourier" ? <Layers size={14} /> : ch.id === "pde" ? <Flame size={14} /> : <Compass size={14} />}
                 </span>
@@ -118,14 +118,14 @@ export const CheatSheetView: React.FC = () => {
           {filteredFormulas.map((f) => (
             <div
               key={f.id}
-              className="relative overflow-hidden rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs flex flex-col justify-between space-y-3 hover:border-violet-500/40 transition-colors"
+              className="relative overflow-hidden rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-xs flex flex-col justify-between space-y-3 hover:border-orange-500/40 transition-colors"
             >
-              <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
 
               <div>
                 <div className="flex items-center justify-between gap-2 border-b border-line pb-2.5 mb-2">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-md bg-violet-500/10 text-violet-600 dark:text-violet-300 px-2 py-0.5 text-[11px] font-bold border border-violet-500/25">
+                    <span className="rounded-md bg-orange-500/10 text-orange-600 dark:text-orange-300 px-2 py-0.5 text-[11px] font-bold border border-orange-500/25">
                       {f.category}
                     </span>
                     <h3 className="text-sm font-bold text-ink">{f.title}</h3>
@@ -160,8 +160,8 @@ export const CheatSheetView: React.FC = () => {
               </div>
 
               {f.conditions && (
-                <div className="rounded-lg bg-violet-500/[0.06] p-2.5 text-[11px] leading-5 font-medium text-ink border-s-4 border-s-violet-500">
-                  <span className="text-violet-600 dark:text-violet-400 font-bold block mb-0.5">شرایط کاربرد:</span>
+                <div className="rounded-lg bg-orange-500/[0.06] p-2.5 text-[11px] leading-5 font-medium text-ink border-s-4 border-s-orange-500">
+                  <span className="text-orange-600 dark:text-orange-400 font-bold block mb-0.5">شرایط کاربرد:</span>
                   <T text={f.conditions} />
                 </div>
               )}

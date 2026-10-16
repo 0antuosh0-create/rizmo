@@ -9,8 +9,8 @@ export const CHAPTERS: ChapterInfo[] = [
     englishTitle: "Fourier Analysis",
     description: "تجزیه سیگنال‌ها و توابع متناوب به مولفه‌های فرکانسی سینوسی و کسینوسی، بسط مختلط، قضیه کانولوشن و محاسبه انتگرال‌های ناسره با تبدیل فوریه.",
     iconName: "Waves",
-    color: "from-blue-600 to-indigo-700",
-    accentColor: "blue",
+    color: "from-amber-500 to-orange-600",
+    accentColor: "amber",
     subTopics: [
       { id: "all", label: "همه مباحث" },
       { id: "fourier-series", label: "سری فوریه مثلثاتی" },
@@ -28,8 +28,8 @@ export const CHAPTERS: ChapterInfo[] = [
     englishTitle: "Partial Differential Equations",
     description: "حل معادلات حاکم بر پدیده‌های فیزیکی مهندسی (ارتعاشات تار، انتقال حرارت و پتانسیل الکترواستاتیک) با شرایط مرزی همگن و ناهمگن و فرمول دالامبر.",
     iconName: "Flame",
-    color: "from-emerald-600 to-teal-700",
-    accentColor: "emerald",
+    color: "from-orange-500 to-rose-600",
+    accentColor: "orange",
     subTopics: [
       { id: "all", label: "همه مباحث" },
       { id: "pde-classification", label: "دسته‌بندی و فرم کانونیکال" },
@@ -47,8 +47,8 @@ export const CHAPTERS: ChapterInfo[] = [
     englishTitle: "Complex Variables & Analysis",
     description: "مشتق‌پذیری مختلط، توابع تحلیلی و مزدوج همساز، فرمول‌های انتگرال کوشی، محاسبه بسط لوران در نواحی طوقه‌ای و حل انتگرال‌های دشوار حقیقی به کمک مانده‌ها.",
     iconName: "Compass",
-    color: "from-purple-600 to-violet-700",
-    accentColor: "purple",
+    color: "from-emerald-500 to-teal-600",
+    accentColor: "emerald",
     subTopics: [
       { id: "all", label: "همه مباحث" },
       { id: "cauchy-riemann", label: "معادلات کوشی-ریمان و توابع همساز" },

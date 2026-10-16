@@ -49,7 +49,7 @@ export const PdeVisualizer: React.FC = () => {
 
       // End boundaries indicators
       ctx.lineWidth = 3;
-      ctx.strokeStyle = boundary === "dirichlet" ? "#8b5cf6" : "#f59e0b";
+      ctx.strokeStyle = boundary === "dirichlet" ? "#f97316" : "#f59e0b";
 
       // Left boundary (x = 0)
       ctx.beginPath();
@@ -108,14 +108,14 @@ export const PdeVisualizer: React.FC = () => {
         points.push({ x: xReal, y: yReal });
       }
 
-      // Draw Gradient fill under the curve
+      // Draw Gradient fill under the curve (Fireplace Hearth warmth)
       const grad = ctx.createLinearGradient(0, centerY - plotHeight, 0, centerY);
       if (mode === "heat") {
-        grad.addColorStop(0, "rgba(249, 115, 22, 0.4)");
+        grad.addColorStop(0, "rgba(249, 115, 22, 0.45)");
         grad.addColorStop(1, "rgba(249, 115, 22, 0.01)");
       } else {
-        grad.addColorStop(0, "rgba(139, 92, 246, 0.4)");
-        grad.addColorStop(1, "rgba(139, 92, 246, 0.01)");
+        grad.addColorStop(0, "rgba(244, 63, 94, 0.45)");
+        grad.addColorStop(1, "rgba(244, 63, 94, 0.01)");
       }
 
       ctx.beginPath();
@@ -130,7 +130,7 @@ export const PdeVisualizer: React.FC = () => {
 
       // Draw Curve Stroke
       ctx.beginPath();
-      ctx.strokeStyle = mode === "heat" ? "#f97316" : "#8b5cf6";
+      ctx.strokeStyle = mode === "heat" ? "#f97316" : "#fb7185";
       ctx.lineWidth = 2.5;
       for (let i = 0; i < points.length; i++) {
         if (i === 0) ctx.moveTo(points[i].x, points[i].y);
@@ -159,7 +159,7 @@ export const PdeVisualizer: React.FC = () => {
     <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3 mb-4">
         <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-600 text-white shadow-xs">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-rose-500 text-white shadow-xs">
             {mode === "heat" ? <Flame size={16} /> : <Activity size={16} />}
           </span>
           <div>
@@ -176,7 +176,9 @@ export const PdeVisualizer: React.FC = () => {
               timeRef.current = 0;
             }}
             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
-              mode === "heat" ? "bg-violet-600 text-white shadow-xs" : "text-soft hover:text-ink"
+              mode === "heat"
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
+                : "text-soft hover:text-ink"
             }`}
           >
             معادله حرارت (پخش)
@@ -187,7 +189,9 @@ export const PdeVisualizer: React.FC = () => {
               timeRef.current = 0;
             }}
             className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
-              mode === "wave" ? "bg-violet-600 text-white shadow-xs" : "text-soft hover:text-ink"
+              mode === "wave"
+                ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs font-black"
+                : "text-soft hover:text-ink"
             }`}
           >
             معادله موج (ارتعاش تار)
@@ -196,7 +200,7 @@ export const PdeVisualizer: React.FC = () => {
       </div>
 
       {/* Canvas */}
-      <div className="relative w-full overflow-hidden rounded-xl border border-line bg-slate-950/90 aspect-[16/8] sm:aspect-[16/7]">
+      <div className="relative w-full overflow-hidden rounded-xl border border-line bg-stone-950/90 aspect-[16/8] sm:aspect-[16/7]">
         <canvas
           ref={canvasRef}
           width={800}
@@ -208,7 +212,7 @@ export const PdeVisualizer: React.FC = () => {
         <div className="absolute top-3 end-3 flex items-center gap-1.5">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-slate-700 bg-slate-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-slate-800"
+            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-stone-700 bg-stone-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-stone-800"
             title={isPlaying ? "توقف شبیه‌سازی" : "ادامه شبیه‌سازی"}
           >
             {isPlaying ? <Pause size={13} /> : <Play size={13} />}
@@ -217,7 +221,7 @@ export const PdeVisualizer: React.FC = () => {
             onClick={() => {
               timeRef.current = 0;
             }}
-            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-slate-700 bg-slate-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-slate-800"
+            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg border border-stone-700 bg-stone-900/90 text-white shadow-xs transition-transform active:scale-90 hover:bg-stone-800"
             title="ریست زمان به صفر"
           >
             <RotateCcw size={13} />
@@ -225,14 +229,14 @@ export const PdeVisualizer: React.FC = () => {
         </div>
 
         {/* Boundary Condition Tags */}
-        <div className="absolute top-3 start-3 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700 text-[11px] font-medium text-white">
+        <div className="absolute top-3 start-3 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-stone-700 text-[11px] font-medium text-white">
           <span>شرط مرزی:</span>
           <button
             onClick={() => {
               setBoundary(boundary === "dirichlet" ? "neumann" : "dirichlet");
               timeRef.current = 0;
             }}
-            className="cursor-pointer text-violet-400 underline hover:text-violet-300 font-bold"
+            className="cursor-pointer text-orange-400 underline hover:text-orange-300 font-bold"
           >
             {boundary === "dirichlet" ? "دیریکله (دو انتهای صفر)" : "نویمان (انتهای عایق/آزاد)"}
           </button>
@@ -249,7 +253,9 @@ export const PdeVisualizer: React.FC = () => {
                 key={s}
                 onClick={() => setSpeed(s)}
                 className={`rounded-lg px-2.5 py-0.5 text-xs font-bold transition-all ${
-                  speed === s ? "bg-violet-600 text-white shadow-xs" : "bg-card2 hover:bg-card border border-line"
+                  speed === s
+                    ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs"
+                    : "bg-card2 hover:bg-card border border-line"
                 }`}
               >
                 {fa(s)}x

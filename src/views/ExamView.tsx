@@ -47,13 +47,13 @@ export const ExamView: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-20">
-      {/* Header Banner */}
+      {/* Header Banner with Warm Personality */}
       <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4 mb-4">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 text-white shadow-xs font-bold">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black">
               <GraduationCap size={20} />
             </span>
             <div>
@@ -66,13 +66,13 @@ export const ExamView: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 rounded-xl border border-violet-500/30 bg-violet-500/10 px-3 py-1.5 text-xs font-bold text-violet-600 dark:text-violet-300 shadow-xs">
+          <div className="flex items-center gap-1.5 rounded-xl border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-xs font-bold text-orange-600 dark:text-orange-300 shadow-xs">
             <Sparkles size={14} />
             <span>۱۰ تست در هر فصل با تحلیل تشریحی</span>
           </div>
         </div>
 
-        {/* Chapter Selection for Exam */}
+        {/* Chapter Selection for Exam with Warm Glow */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {CHAPTERS.map((ch) => {
             const isSelected = selectedChapter === ch.id;
@@ -80,15 +80,15 @@ export const ExamView: React.FC = () => {
               <button
                 key={ch.id}
                 onClick={() => setSelectedChapter(ch.id)}
-                className={`p-3.5 rounded-xl border text-start transition-all cursor-pointer ${
+                className={`p-3.5 rounded-2xl border text-start transition-all cursor-pointer ${
                   isSelected
-                    ? "border-violet-500/50 bg-violet-500/10 text-violet-600 dark:text-violet-300 font-bold shadow-xs"
+                    ? "border-orange-500/50 bg-gradient-to-br from-amber-500/15 via-orange-500/05 to-transparent text-orange-600 dark:text-orange-300 font-bold shadow-xs scale-[1.01]"
                     : "border-line bg-card2 hover:bg-card text-soft hover:text-ink"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`flex h-6 w-6 items-center justify-center rounded-md border text-xs font-bold ${
-                    isSelected ? "bg-violet-600 text-white border-violet-600 shadow-xs" : "bg-card border-line text-ink"
+                  <span className={`flex h-6 w-6 items-center justify-center rounded-lg border text-xs font-bold ${
+                    isSelected ? "bg-gradient-to-br from-amber-500 to-orange-500 text-white border-orange-500 shadow-xs" : "bg-card border-line text-ink"
                   }`}>
                     {ch.id === "fourier" ? <Layers size={13} /> : ch.id === "pde" ? <Flame size={13} /> : <Compass size={13} />}
                   </span>
@@ -101,14 +101,14 @@ export const ExamView: React.FC = () => {
         </div>
       </div>
 
-      {/* Exam Strategy Tips */}
+      {/* Exam Strategy Tips with Warm Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {examTips.map((tip, idx) => {
           const Icon = tip.icon;
           return (
             <div
               key={idx}
-              className="rounded-xl border border-line bg-card p-4 shadow-xs space-y-1.5"
+              className="rounded-2xl border border-line bg-card p-4 shadow-xs space-y-1.5 hover:border-orange-500/30 transition-colors"
             >
               <div className="flex items-center gap-2 text-ink">
                 <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
