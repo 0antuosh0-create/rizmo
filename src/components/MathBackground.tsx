@@ -1,81 +1,273 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { M } from "./Math";
+
+interface FloatingEquation {
+  id: string;
+  latex: string;
+  title: string;
+  side: "left" | "right";
+  topPercent: number;
+  delay: string;
+  duration: string;
+}
+
+const EQUATIONS: FloatingEquation[] = [
+  {
+    id: "eq-1",
+    latex: "\\nabla^2 u = 0",
+    title: "معادله لاپلاس",
+    side: "left",
+    topPercent: 22,
+    delay: "0s",
+    duration: "11s",
+  },
+  {
+    id: "eq-2",
+    latex: "\\oint_C f(z) dz = 2\\pi i \\sum \\text{Res}",
+    title: "قضیه مانده‌ها",
+    side: "right",
+    topPercent: 18,
+    delay: "2s",
+    duration: "13s",
+  },
+  {
+    id: "eq-3",
+    latex: "u_{tt} = c^2 u_{xx}",
+    title: "معادله موج ۱ بعدی",
+    side: "right",
+    topPercent: 48,
+    delay: "1.5s",
+    duration: "15s",
+  },
+  {
+    id: "eq-4",
+    latex: "u_x = v_y, \\quad u_y = -v_x",
+    title: "معادلات کوشی-ریمان",
+    side: "left",
+    topPercent: 54,
+    delay: "3s",
+    duration: "12s",
+  },
+  {
+    id: "eq-5",
+    latex: "\\int_{-\\infty}^\\infty e^{-x^2} dx = \\sqrt{\\pi}",
+    title: "انتگرال گاوسی",
+    side: "right",
+    topPercent: 78,
+    delay: "4s",
+    duration: "14s",
+  },
+  {
+    id: "eq-6",
+    latex: "\\sum_{n=1}^\\infty \\frac{1}{n^2} = \\frac{\\pi^2}{6}",
+    title: "مسئله بازل (اویلر)",
+    side: "left",
+    topPercent: 82,
+    delay: "2.5s",
+    duration: "16s",
+  },
+];
 
 export const MathBackground: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 });
+
+  // Interactive mouse tracking for spotlight
+  useEffect(() => {
+    let animId: number;
+    let targetX = -1000;
+    let targetY = -1000;
+    let currentX = -1000;
+    let currentY = -1000;
+
+    const onMouseMove = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    };
+
+    const updateMouse = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      setMousePos({ x: currentX, y: currentY });
+      animId = requestAnimationFrame(updateMouse);
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    animId = requestAnimationFrame(updateMouse);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  // Living Ambient Harmonic Wave Simulation
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let t = 0;
+    let running = true;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    const render = () => {
+      if (!running) return;
+      t += 0.012;
+
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const isDark = document.documentElement.classList.contains("dark");
+
+      // 3 Harmonic wave streams (Fourier modes)
+      const ribbons = [
+        {
+          color: isDark ? "rgba(45, 212, 191, 0.15)" : "rgba(15, 118, 110, 0.10)",
+          baseY: h * 0.28,
+          amplitude: 36,
+          freq: 0.0022,
+          speed: 1,
+          dash: [6, 8],
+        },
+        {
+          color: isDark ? "rgba(251, 191, 36, 0.12)" : "rgba(217, 119, 6, 0.08)",
+          baseY: h * 0.58,
+          amplitude: 44,
+          freq: 0.0017,
+          speed: 0.75,
+          dash: [],
+        },
+        {
+          color: isDark ? "rgba(244, 63, 94, 0.10)" : "rgba(225, 29, 72, 0.06)",
+          baseY: h * 0.88,
+          amplitude: 38,
+          freq: 0.002,
+          speed: 1.1,
+          dash: [4, 6],
+        },
+      ];
+
+      for (const r of ribbons) {
+        ctx.beginPath();
+        ctx.setLineDash(r.dash);
+        ctx.strokeStyle = r.color;
+        ctx.lineWidth = 1.75;
+
+        for (let x = 0; x <= w; x += 15) {
+          const yOffset =
+            Math.sin(x * r.freq + t * r.speed) * r.amplitude +
+            Math.cos(x * r.freq * 2 - t * 0.5) * (r.amplitude * 0.35);
+
+          // Subtle cursor interaction: waves pluck gently when mouse is near
+          const distToMouse = Math.hypot(x - mousePos.x, r.baseY + yOffset - mousePos.y);
+          const cursorForce = Math.max(0, 1 - distToMouse / 240);
+          const bend = Math.sin(t * 3 + x * 0.02) * cursorForce * 32;
+
+          const y = r.baseY + yOffset + bend;
+
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      // Faint particle constellation along wave nodal points
+      for (let i = 0; i < 16; i++) {
+        const px = ((i * 150 + t * 24) % (w + 100)) - 50;
+        const py = h * 0.3 + Math.sin(px * 0.003 + t) * 60 + Math.cos(i + t * 0.5) * 40;
+
+        ctx.fillStyle = isDark
+          ? i % 2 === 0
+            ? "rgba(45, 212, 191, 0.28)"
+            : "rgba(251, 191, 36, 0.22)"
+          : i % 2 === 0
+          ? "rgba(15, 118, 110, 0.16)"
+          : "rgba(217, 119, 6, 0.14)";
+
+        ctx.beginPath();
+        ctx.arc(px, py, (i % 3) + 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      running = false;
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animId);
+    };
+  }, [mousePos]);
+
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none opacity-80 dark:opacity-60"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
     >
-      {/* Whimsical Engineering Mathematical Stamps in the Margins */}
-      <svg
-        className="absolute inset-0 h-full w-full"
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="100%"
-      >
-        <g className="text-teal-700/25 dark:text-teal-400/20" fill="none" stroke="currentColor">
-          {/* 1. Harmonious Sine Wave & Phasor Circle (Top Right margin) */}
-          <g transform="translate(1080, 75)">
-            <circle cx="50" cy="50" r="38" strokeWidth="1.5" strokeDasharray="3 3" />
-            <line x1="12" y1="50" x2="88" y2="50" strokeWidth="1" />
-            <line x1="50" y1="12" x2="50" y2="88" strokeWidth="1" />
-            <circle cx="78" cy="24" r="3" fill="currentColor" />
-            {/* Projected wave */}
-            <path
-              d="M 88 24 Q 115 -10 142 24 T 196 24 T 250 24"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-            />
-          </g>
+      {/* 1. Ambient Interactive Mouse Spotlight */}
+      <div
+        className="absolute inset-0 transition-opacity duration-500 opacity-60 dark:opacity-35 pointer-events-none"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(45, 212, 191, 0.12), transparent 75%)`,
+        }}
+      />
 
-          {/* 2. Integral Symbol with Limits (Left margin) */}
-          <g transform="translate(45, 260)">
-            <path
-              d="M 22 10 C 18 10 14 16 14 30 L 14 65 C 14 80 10 88 6 88 M 6 10 C 10 10 14 16 14 30"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <circle cx="24" cy="11" r="2" fill="currentColor" />
-            <circle cx="5" cy="87" r="2" fill="currentColor" />
-            {/* Wave packet */}
-            <path
-              d="M 28 48 Q 42 28 56 48 T 84 48 T 112 48"
-              strokeWidth="1.25"
-              strokeDasharray="2 3"
-            />
-          </g>
+      {/* 2. Living Wave Harmonic Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 h-full w-full pointer-events-none opacity-85 dark:opacity-75"
+      />
 
-          {/* 3. Geometric Right-Angle Triangle (Bottom Right margin) */}
-          <g transform="translate(1100, 580)">
-            <path d="M 10 80 L 95 80 L 95 20 Z" strokeWidth="1.5" strokeLinejoin="round" />
-            <path d="M 85 80 L 85 70 L 95 70" strokeWidth="1.2" />
-            <circle cx="90" cy="75" r="1.5" fill="currentColor" />
-            <path d="M 32 80 A 22 22 0 0 0 28 67" strokeWidth="1.2" strokeDasharray="2 2" />
-          </g>
+      {/* 3. Floating KaTeX Equation Stamps in the True Outer Margins (Wide screens only) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden 2xl:block">
+        {EQUATIONS.map((eq) => (
+          <div
+            key={eq.id}
+            className={`absolute rounded-2xl border-2 border-line bg-card/75 dark:bg-card/65 backdrop-blur-md px-3.5 py-2 shadow-xs transition-transform duration-1000 ease-out ${
+              eq.side === "left" ? "start-4" : "end-4"
+            }`}
+            style={{
+              top: `${eq.topPercent}%`,
+              animation: `float-gentle ${eq.duration} ease-in-out infinite alternate`,
+              animationDelay: eq.delay,
+            }}
+          >
+            <div className="text-teal-900 dark:text-teal-300 font-bold text-center">
+              <M tex={eq.latex} />
+            </div>
+            <span className="block text-[10px] font-black text-faint text-center mt-1">
+              {eq.title}
+            </span>
+          </div>
+        ))}
+      </div>
 
-          {/* 4. Polar Coordinates Rose Curve (Bottom Left margin) */}
-          <g transform="translate(55, 720)">
-            <circle cx="45" cy="45" r="30" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.6" />
-            <path
-              d="M 45 45 C 58 18 72 45 45 45 C 72 58 45 72 45 45 C 32 72 18 45 45 45 C 18 32 45 18 45 45"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-          </g>
-
-          {/* 5. Sparkles and mathematical constellation accents */}
-          <g transform="translate(200, 140)">
-            <path d="M 0 -7 L 0 7 M -7 0 L 7 0" strokeWidth="2" strokeLinecap="round" />
-          </g>
-          <g transform="translate(960, 360)" className="text-amber-500/30 dark:text-amber-400/25">
-            <path d="M 0 -8 L 0 8 M -8 0 L 8 0" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="0" cy="0" r="2" fill="currentColor" />
-          </g>
-          <g transform="translate(180, 890)" className="text-amber-500/30 dark:text-amber-400/25">
-            <path d="M 0 -6 L 0 6 M -6 0 L 6 0" strokeWidth="1.5" strokeLinecap="round" />
-          </g>
-        </g>
-      </svg>
+      <style>{`
+        @keyframes float-gentle {
+          0% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-8px) rotate(0.8deg);
+          }
+          100% {
+            transform: translateY(4px) rotate(-0.8deg);
+          }
+        }
+      `}</style>
     </div>
   );
 };
