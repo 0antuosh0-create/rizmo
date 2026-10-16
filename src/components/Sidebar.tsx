@@ -36,11 +36,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onCloseMobile,
 }) => {
   return (
-    <div className="flex h-full flex-col justify-between overflow-y-auto p-4 space-y-6">
-      <div className="space-y-6">
+    <div className="flex h-full flex-col overflow-y-auto p-4 space-y-5 scrollbar-thin">
+      <div className="space-y-5 flex-1">
         {/* Navigation Section */}
         <div className="space-y-1">
-          <p className="px-2 text-[11px] font-bold text-faint uppercase tracking-wider mb-2">
+          <p className="px-2 text-[11px] font-black text-faint uppercase tracking-wider mb-2">
             بخش‌های سامانه
           </p>
 
@@ -92,7 +92,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Chapters Curriculum */}
         <div className="space-y-2">
-          <p className="px-2 text-[11px] font-bold text-faint uppercase tracking-wider">
+          <p className="px-2 text-[11px] font-black text-faint uppercase tracking-wider">
             سرفصل‌های کارشناسی
           </p>
 
@@ -161,7 +161,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
 
-        {/* References Card with Warm Friendly Tone */}
+        {/* References Card */}
         <div className="rounded-2xl border-2 border-line bg-card2/60 p-3.5 space-y-2 text-[11px] shadow-xs">
           <div className="flex items-center gap-1.5 font-black text-ink">
             <Award size={14} className="text-amber-500" />
@@ -177,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Footer Info */}
-      <div className="pt-4 border-t-2 border-line text-[10.5px] text-faint text-center font-bold">
+      <div className="pt-3 pb-1 border-t-2 border-line text-[10.5px] text-faint text-center font-black shrink-0">
         ریاضی مهندسی دانشگاهی • مقطع کارشناسی
       </div>
     </div>
