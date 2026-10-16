@@ -13,8 +13,6 @@ import {
   Lightbulb,
   Check,
   SendHorizontal,
-  Flame,
-  PartyPopper,
 } from "lucide-react";
 import { QuizQuestion, ChapterId } from "../types";
 import { T, M, MB, MathLines, fa } from "./Math";
@@ -122,20 +120,20 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Quiz Header Banner with Warm Personality */}
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
+      {/* Quiz Header Banner with Tactile 2px Border */}
+      <div className="relative overflow-hidden rounded-2xl border-2 border-line bg-card p-5 sm:p-6 shadow-sm">
+        <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
 
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-line pb-4 mb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black">
               <Award size={20} />
             </span>
             <div>
               <h2 className="text-lg sm:text-xl font-black text-ink tracking-tight">
                 آزمون خودسنجی تستی: {chapterTitle}
               </h2>
-              <p className="text-xs text-soft font-medium">
+              <p className="text-xs text-soft font-bold">
                 ۱۰ تست محاسباتی با منابع مستند دانشگاه‌های برتر و کنکور کارشناسی ارشد
               </p>
             </div>
@@ -143,16 +141,16 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
           {/* Action Bar (Timer, Reset, Submit Button in Header) */}
           <div className="flex flex-wrap items-center gap-2.5 ms-auto">
-            <div className="flex items-center gap-2 rounded-xl border border-line bg-card2 px-3 py-1.5 shadow-xs">
+            <div className="flex items-center gap-2 rounded-xl border-2 border-line bg-card2 px-3 py-1.5 shadow-xs">
               <Clock size={15} className={isTimerRunning && !isSubmitted ? "text-orange-500 animate-pulse" : "text-faint"} />
-              <span className="font-sans text-xs font-bold text-ink tabular-nums">
+              <span className="font-sans text-xs font-black text-ink tabular-nums">
                 {formatTimer(timerSeconds)}
               </span>
             </div>
 
             <button
               onClick={handleReset}
-              className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border border-line bg-card hover:bg-card2 px-3 py-1.5 text-xs font-bold text-soft hover:text-ink shadow-xs transition-all active:scale-95"
+              className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border-2 border-line bg-card hover:bg-card2 px-3.5 py-1.5 text-xs font-black text-soft hover:text-ink shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5"
               title="شروع مجدد آزمون"
             >
               <RotateCcw size={13} />
@@ -162,7 +160,7 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
             {!isSubmitted && (
               <button
                 onClick={handleSubmit}
-                className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-4 py-1.5 text-xs font-bold shadow-xs transition-all active:scale-95"
+                className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border-2 border-line bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-4 py-1.5 text-xs font-black shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5"
               >
                 <SendHorizontal size={14} />
                 <span>ثبت آزمون</span>
@@ -173,11 +171,11 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
         {/* Results Banner when Submitted */}
         {isSubmitted && (
-          <div className="rounded-2xl border border-line bg-gradient-to-br from-card2 via-card2/80 to-card p-5 mb-5 shadow-xs">
+          <div className="rounded-2xl border-2 border-line bg-gradient-to-br from-card2 via-card2/80 to-card p-5 mb-5 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
                 <span
-                  className={`flex h-14 w-14 items-center justify-center rounded-2xl text-white font-black text-lg shadow-sm ${
+                  className={`flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-line text-white font-black text-lg shadow-sm ${
                     scorePercent >= 70
                       ? "bg-gradient-to-br from-emerald-500 to-teal-600"
                       : scorePercent >= 40
@@ -199,16 +197,16 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
               <div className="text-xs font-bold">
                 {scorePercent >= 80 ? (
-                  <span className="text-emerald-700 dark:text-emerald-400 font-black inline-flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+                  <span className="text-emerald-800 dark:text-emerald-300 font-black inline-flex items-center gap-1.5 bg-emerald-500/15 px-3 py-1.5 rounded-xl border-2 border-line shadow-xs">
                     <Sparkles size={15} />
                     فوق‌العاده بود! تسلط کامل بر مفاهیم و فرمول‌های این فصل.
                   </span>
                 ) : scorePercent >= 50 ? (
-                  <span className="text-amber-800 dark:text-amber-300 font-bold inline-flex items-center gap-1 bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/20">
+                  <span className="text-amber-900 dark:text-amber-200 font-bold inline-flex items-center gap-1 bg-amber-500/15 px-3 py-1.5 rounded-xl border-2 border-line shadow-xs">
                     آفرین! حل‌های تشریحی زیر رو بررسی کن تا تله‌های تستی کامل برات جا بیفته.
                   </span>
                 ) : (
-                  <span className="text-rose-700 dark:text-rose-300 font-bold inline-flex items-center gap-1 bg-rose-500/10 px-3 py-1.5 rounded-xl border border-rose-500/20">
+                  <span className="text-rose-900 dark:text-rose-200 font-bold inline-flex items-center gap-1 bg-rose-500/15 px-3 py-1.5 rounded-xl border-2 border-line shadow-xs">
                     اشکالی نداره! فرمول‌های تقلب‌نامه رو یک‌بار مرور کن و دوباره بزن.
                   </span>
                 )}
@@ -225,7 +223,7 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
               {fa(answeredCount)} از {fa(questions.length)} سوال
             </span>
           </div>
-          <div className="h-2.5 rounded-full bg-card2 border border-line overflow-hidden">
+          <div className="h-3 rounded-full bg-card2 border-2 border-line overflow-hidden shadow-xs">
             <div
               className="h-full bg-gradient-to-l from-amber-400 via-orange-500 to-emerald-400 transition-all duration-300"
               style={{ width: `${(answeredCount / questions.length) * 100}%` }}
@@ -244,25 +242,25 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
           return (
             <div
               key={q.id}
-              className={`rounded-2xl border bg-card p-4 sm:p-5 shadow-xs transition-all ${
+              className={`rounded-2xl border-2 border-line bg-card p-4 sm:p-5 shadow-xs transition-all ${
                 isSubmitted
                   ? isCorrect
-                    ? "border-emerald-500/50 bg-emerald-500/[0.03]"
-                    : "border-rose-500/50 bg-rose-500/[0.03]"
-                  : "border-line hover:border-orange-500/30"
+                    ? "bg-emerald-500/[0.04]"
+                    : "bg-rose-500/[0.04]"
+                  : "hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-sm"
               }`}
             >
               {/* Question Header */}
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-2.5 mb-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-line pb-2.5 mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-orange-500/10 border border-orange-500/25 text-orange-600 dark:text-orange-300 text-xs font-black">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-lg border-2 border-line bg-amber-400/25 text-orange-900 dark:text-orange-200 text-xs font-black shadow-xs">
                     {fa(qIndex + 1)}
                   </span>
-                  <span className="text-xs font-bold text-ink">تست شماره {fa(qIndex + 1)}</span>
+                  <span className="text-xs font-black text-ink">تست شماره {fa(qIndex + 1)}</span>
                 </div>
 
                 {/* Source Badge */}
-                <span className="inline-flex items-center gap-1 rounded-lg border border-line bg-card2 px-2.5 py-0.5 text-[11px] font-medium text-soft">
+                <span className="inline-flex items-center gap-1 rounded-xl border-2 border-line bg-card2 px-2.5 py-0.5 text-[11px] font-bold text-soft shadow-xs">
                   <Award size={12} className="text-orange-500" />
                   <span>{q.source}</span>
                 </span>
@@ -276,21 +274,21 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
                 {q.questionMath && <MathLines lines={q.questionMath} className="mt-2" />}
               </div>
 
-              {/* 4 Options */}
+              {/* 4 Options with Tactile Neo-Brutalist Feel */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3">
                 {q.options.map((opt, optIdx) => {
                   const isSelected = selectedOption === optIdx;
                   const isThisCorrect = q.correctOption === optIdx;
 
-                  let optStyle = "border-line bg-card2/40 hover:bg-card2 hover:border-orange-500/40 text-ink";
+                  let optStyle = "border-2 border-line bg-card2/40 hover:bg-card2 text-ink shadow-xs";
                   if (showAnswer) {
                     if (isThisCorrect) {
-                      optStyle = "border-emerald-500 bg-emerald-500/15 text-emerald-800 dark:text-emerald-200 font-bold shadow-xs";
+                      optStyle = "border-2 border-line bg-emerald-500/20 text-emerald-950 dark:text-emerald-200 font-black shadow-sm";
                     } else if (isSelected && !isThisCorrect) {
-                      optStyle = "border-rose-500 bg-rose-500/15 text-rose-800 dark:text-rose-200 font-medium";
+                      optStyle = "border-2 border-line bg-rose-500/20 text-rose-950 dark:text-rose-200 font-bold shadow-xs";
                     }
                   } else if (isSelected) {
-                    optStyle = "border-orange-500 bg-orange-500/10 text-orange-700 dark:text-orange-300 font-bold shadow-xs ring-1 ring-orange-500/30";
+                    optStyle = "border-2 border-line bg-amber-400/30 text-orange-950 dark:text-orange-200 font-black shadow-sm -translate-x-0.5 -translate-y-0.5";
                   }
 
                   return (
@@ -298,9 +296,9 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
                       key={optIdx}
                       disabled={isSubmitted}
                       onClick={() => handleSelectOption(q.id, optIdx)}
-                      className={`flex items-center gap-3 p-3.5 rounded-xl border text-start transition-all cursor-pointer ${optStyle}`}
+                      className={`flex items-center gap-3 p-3.5 rounded-xl text-start transition-all cursor-pointer active:translate-x-0.5 active:translate-y-0.5 ${optStyle}`}
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-line bg-card text-xs font-bold">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border-2 border-line bg-card text-xs font-black shadow-xs">
                         {fa(optIdx + 1)}
                       </span>
                       <div className="text-xs sm:text-[13px] leading-6 flex-1 min-w-0">
@@ -308,10 +306,10 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
                         {opt.math && <M tex={opt.math} />}
                       </div>
                       {showAnswer && isThisCorrect && (
-                        <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                        <CheckCircle2 size={16} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
                       )}
                       {showAnswer && isSelected && !isThisCorrect && (
-                        <XCircle size={16} className="text-rose-500 shrink-0" />
+                        <XCircle size={16} className="text-rose-600 dark:text-rose-400 shrink-0" />
                       )}
                     </button>
                   );
@@ -320,10 +318,10 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
               {/* Toggle Explanation Button (if submitted) */}
               {isSubmitted && (
-                <div className="border-t border-line pt-3 mt-3">
+                <div className="border-t-2 border-line pt-3 mt-3">
                   <button
                     onClick={() => toggleExplanation(q.id)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-orange-600 dark:text-orange-400 hover:underline cursor-pointer"
+                    className="flex items-center gap-1.5 text-xs font-black text-orange-600 dark:text-orange-400 hover:underline cursor-pointer"
                   >
                     <ChevronDown
                       size={14}
@@ -334,9 +332,9 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
                   {/* Expanded Explanation */}
                   {expandedExplanations[q.id] && (
-                    <div className="mt-3 space-y-3 rounded-xl border border-line bg-card2/60 p-3.5 sm:p-4 text-xs sm:text-[13px] leading-7">
+                    <div className="mt-3 space-y-3 rounded-2xl border-2 border-line bg-card2/60 p-4 text-xs sm:text-[13px] leading-7 shadow-xs">
                       <div className="font-bold text-ink">
-                        <span className="font-bold text-orange-600 dark:text-orange-400 flex items-center gap-1 mb-1">
+                        <span className="font-black text-orange-600 dark:text-orange-400 flex items-center gap-1 mb-1">
                           <Lightbulb size={14} />
                           ایده و تحلیل مفهومی تست:
                         </span>
@@ -344,18 +342,18 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
                       </div>
 
                       {q.explanation.steps.map((st, i) => (
-                        <div key={i} className="rounded-lg bg-card p-3 border border-line space-y-1">
-                          <p className="font-bold text-ink">{st.title}</p>
+                        <div key={i} className="rounded-xl bg-card p-3 border-2 border-line space-y-1 shadow-xs">
+                          <p className="font-black text-ink">{st.title}</p>
                           {st.text && <p className="text-soft font-medium"><T text={st.text} /></p>}
                           {st.math && <MathLines lines={st.math} />}
                         </div>
                       ))}
 
                       {q.explanation.trap && (
-                        <div className="flex items-start gap-2 rounded-lg bg-amber-500/10 p-2.5 text-ink border border-amber-500/30">
+                        <div className="flex items-start gap-2 rounded-xl bg-amber-500/15 p-3 text-ink border-2 border-line shadow-xs">
                           <AlertTriangle size={15} className="text-amber-500 shrink-0 mt-1" />
                           <div>
-                            <span className="font-bold block text-amber-800 dark:text-amber-300">دام تستی:</span>
+                            <span className="font-black block text-amber-900 dark:text-amber-300">دام تستی:</span>
                             <span className="font-medium text-soft">{q.explanation.trap}</span>
                           </div>
                         </div>
@@ -369,9 +367,9 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
         })}
       </div>
 
-      {/* Friendly Natural Completion Card */}
+      {/* Friendly Natural Completion Card with Solid Border */}
       {!isSubmitted && (
-        <div className="rounded-2xl border border-line bg-card p-6 sm:p-7 shadow-sm text-center space-y-3.5 mt-6">
+        <div className="rounded-2xl border-2 border-line bg-card p-6 sm:p-7 shadow-sm text-center space-y-3.5 mt-6">
           <div className="flex items-center justify-center gap-2 text-ink font-black text-sm">
             <CheckCircle2 size={18} className="text-orange-500" />
             <span>خسته نباشی! پایان سوالات آزمون این فصل</span>
@@ -383,7 +381,7 @@ export const ChapterQuiz: React.FC<ChapterQuizProps> = ({
 
           <button
             onClick={handleSubmit}
-            className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white px-8 py-3 text-sm font-black shadow-sm transition-all active:scale-95"
+            className="cursor-pointer inline-flex items-center gap-2 rounded-xl border-2 border-line bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white px-8 py-3 text-sm font-black shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5"
           >
             <SendHorizontal size={16} />
             <span>ثبت نهایی و مشاهده کارنامه آزمون ({fa(answeredCount)} از ۱۰)</span>

@@ -8,8 +8,6 @@ import {
   Table2,
   GraduationCap,
   Sparkles,
-  Flame,
-  Coffee,
 } from "lucide-react";
 import { fa } from "./Math";
 
@@ -35,21 +33,21 @@ export const TopBar: React.FC<TopBarProps> = ({
   progressPct,
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-line bg-card/90 dark:bg-card/85 backdrop-blur-md transition-colors shadow-xs">
+    <header className="sticky top-0 z-40 w-full border-b-2 border-line bg-card/95 backdrop-blur-md transition-colors shadow-xs">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 gap-3">
         {/* Right side: Mobile Menu Button + App Brand */}
         <div className="flex items-center gap-3">
           <button
             onClick={onMenu}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:scale-95 lg:hidden cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:translate-x-0.5 active:translate-y-0.5 lg:hidden cursor-pointer"
             aria-label="فهرست و منو"
           >
             <Menu size={18} />
           </button>
 
           <div className="flex items-center gap-2.5">
-            {/* Friendly Warm Sunset Logo */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-sm shadow-orange-500/25 ring-2 ring-orange-500/20">
+            {/* Friendly Warm Sunset Neo-Brutalist Logo */}
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-line bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs">
               <Sparkles size={20} strokeWidth={2.4} />
             </div>
             <div>
@@ -57,25 +55,25 @@ export const TopBar: React.FC<TopBarProps> = ({
                 <span className="text-base sm:text-lg font-black text-ink tracking-tight">
                   ریاضی مهندسی
                 </span>
-                <span className="hidden sm:inline-flex rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300 px-2.5 py-0.5 text-[10.5px] font-black">
+                <span className="hidden sm:inline-flex rounded-full border-2 border-line bg-amber-400/25 text-amber-900 dark:text-amber-200 px-2.5 py-0.2 text-[10.5px] font-black shadow-xs">
                   کارشناسی
                 </span>
               </div>
-              <p className="text-[11px] font-medium text-soft hidden xs:flex items-center gap-1">
+              <p className="text-[11px] font-bold text-soft hidden xs:flex items-center gap-1">
                 <span>حل‌المسائل تشریحی، فرمول‌ها و خودآزمایی</span>
               </p>
             </div>
           </div>
         </div>
 
-        {/* Center: Desktop Navigation Pills with Warm Cheerful Glow */}
-        <nav className="hidden md:flex items-center gap-1.5 rounded-2xl border border-line bg-card2/80 p-1 shadow-xs">
+        {/* Center: Desktop Navigation Pills with Tactile Neo-Brutalist Border */}
+        <nav className="hidden md:flex items-center gap-1.5 rounded-2xl border-2 border-line bg-card2/80 p-1 shadow-xs">
           <button
             onClick={() => setView("problems")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "problems"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-sm shadow-orange-500/25 font-black"
-                : "text-soft hover:text-ink hover:bg-card"
+                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
             <BookOpenText size={15} />
@@ -84,10 +82,10 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           <button
             onClick={() => setView("cheatsheet")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "cheatsheet"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-sm shadow-orange-500/25 font-black"
-                : "text-soft hover:text-ink hover:bg-card"
+                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
             <Table2 size={15} />
@@ -96,10 +94,10 @@ export const TopBar: React.FC<TopBarProps> = ({
 
           <button
             onClick={() => setView("exam")}
-            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-black transition-all cursor-pointer ${
               view === "exam"
-                ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-sm shadow-orange-500/25 font-black"
-                : "text-soft hover:text-ink hover:bg-card"
+                ? "border-2 border-line bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs"
+                : "border-2 border-transparent text-soft hover:text-ink hover:bg-card"
             }`}
           >
             <GraduationCap size={15} />
@@ -109,8 +107,8 @@ export const TopBar: React.FC<TopBarProps> = ({
 
         {/* Left side: Search, Theme Toggle, Overall Progress */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Cheerful Progress Chip */}
-          <div className="hidden sm:flex items-center gap-1.5 rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 shadow-xs">
+          {/* Cheerful Progress Chip with Tactile Border */}
+          <div className="hidden sm:flex items-center gap-1.5 rounded-xl border-2 border-line bg-emerald-500/15 px-3 py-1 text-xs font-black text-emerald-800 dark:text-emerald-300 shadow-xs">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>{fa(progressPct)}٪ حل‌شده</span>
           </div>
@@ -118,20 +116,20 @@ export const TopBar: React.FC<TopBarProps> = ({
           {/* Quick Search Shortcut Button */}
           <button
             onClick={onSearch}
-            className="flex h-9 items-center gap-2 rounded-xl border border-line bg-card hover:bg-card2 hover:border-orange-500/40 px-2.5 sm:px-3 text-xs font-medium text-soft hover:text-ink shadow-xs transition-all active:scale-95 cursor-pointer"
+            className="flex h-9 items-center gap-2 rounded-xl border-2 border-line bg-card hover:bg-card2 px-2.5 sm:px-3 text-xs font-bold text-soft hover:text-ink shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             title="جستجوی سریع (Ctrl + K)"
           >
             <Search size={14} className="text-faint" />
             <span className="hidden sm:inline">جستجو...</span>
-            <kbd className="hidden md:inline font-mono text-[10px] bg-card2 border border-line px-1.5 py-0.5 rounded text-faint">
+            <kbd className="hidden md:inline font-mono text-[10px] bg-card2 border-2 border-line px-1.5 py-0.5 rounded-lg text-faint font-bold">
               Ctrl K
             </kbd>
           </button>
 
-          {/* Dark / Light Mode Toggle with Warm Sunset / Moon Tone */}
+          {/* Dark / Light Mode Toggle */}
           <button
             onClick={toggleDark}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:scale-90 cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line bg-card hover:bg-card2 text-ink shadow-xs transition-transform active:translate-x-0.5 active:translate-y-0.5 cursor-pointer"
             aria-label={dark ? "تغییر به تم روز (روشن)" : "تغییر به تم شب (کافه تاریک)"}
           >
             {dark ? (

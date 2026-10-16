@@ -16,8 +16,6 @@ import {
   SlidersHorizontal,
   Check,
   Coffee,
-  Heart,
-  Smile,
 } from "lucide-react";
 import { ChapterId, Difficulty, SourceCategory, SolvedProblem } from "../types";
 import { CHAPTERS, getProblemsByChapter } from "../data";
@@ -39,7 +37,7 @@ interface DropdownOption {
   description?: string;
 }
 
-// Custom warm styled popover dropdown
+// Custom warm tactile styled popover dropdown
 function CustomFilterDropdown({
   label,
   value,
@@ -72,14 +70,14 @@ function CustomFilterDropdown({
 
   return (
     <div className="relative" ref={containerRef}>
-      <label className="block text-[11px] font-bold text-soft mb-1.5">{label}:</label>
+      <label className="block text-[11px] font-black text-soft mb-1.5">{label}:</label>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex w-full items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-bold text-ink transition-all cursor-pointer shadow-xs ${
+        className={`flex w-full items-center justify-between gap-2 rounded-xl border-2 border-line px-3.5 py-2.5 text-xs font-black text-ink transition-all cursor-pointer shadow-xs active:translate-x-0.5 active:translate-y-0.5 ${
           isOpen
-            ? "border-orange-500 bg-card2 ring-2 ring-orange-500/20"
-            : "border-line bg-card hover:bg-card2 hover:border-orange-500/40"
+            ? "bg-amber-500/10 text-orange-600 dark:text-orange-300"
+            : "bg-card hover:bg-card2"
         }`}
       >
         <span className="flex items-center gap-2 truncate">
@@ -94,9 +92,9 @@ function CustomFilterDropdown({
         />
       </button>
 
-      {/* Floating Popover Menu with Warm Personality */}
+      {/* Floating Popover Menu with Solid 2px Border & Hard Shadow */}
       {isOpen && (
-        <div className="absolute top-full start-0 z-30 mt-1.5 w-full min-w-[240px] rounded-2xl border border-line bg-card p-1.5 shadow-xl space-y-0.5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute top-full start-0 z-30 mt-1.5 w-full min-w-[240px] rounded-2xl border-2 border-line bg-card p-1.5 shadow-md space-y-0.5 animate-in fade-in zoom-in-95 duration-150">
           {options.map((opt) => {
             const isSelected = opt.value === value;
             return (
@@ -107,10 +105,10 @@ function CustomFilterDropdown({
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-start text-xs font-bold transition-all cursor-pointer ${
+                className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2 text-start text-xs font-black transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-gradient-to-r from-orange-500/15 to-amber-500/10 text-orange-600 dark:text-orange-300 font-black"
-                    : "text-soft hover:bg-card2 hover:text-ink"
+                    ? "border-2 border-line bg-amber-400/20 text-orange-700 dark:text-orange-300 shadow-xs"
+                    : "text-soft hover:bg-card2 hover:text-ink border-2 border-transparent"
                 }`}
               >
                 <div className="min-w-0">
@@ -219,11 +217,11 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
 
   return (
     <div className="space-y-6 pb-20">
-      {/* Friendly Warm Hero Greeting Pill */}
-      <div className="rounded-2xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-orange-500/08 to-rose-500/05 p-3.5 sm:p-4 text-xs font-bold text-ink flex flex-wrap items-center justify-between gap-3 shadow-xs">
+      {/* Friendly Warm Hero Greeting Pill with Tactile Border */}
+      <div className="rounded-2xl border-2 border-line bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-rose-500/08 p-3.5 sm:p-4 text-xs font-bold text-ink flex flex-wrap items-center justify-between gap-3 shadow-sm">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs">
-            <Coffee size={14} />
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl border-2 border-line bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-xs">
+            <Coffee size={15} />
           </span>
           <span className="text-soft">
             <strong className="text-ink font-black">سلام دوست مهندس!</strong> یک فنجان چای یا قهوه بنوش و با گام‌های روشن، گره مسائل سخت رو باز کن.
@@ -231,13 +229,13 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
         </div>
 
         <div className="flex items-center gap-2 ms-auto">
-          <span className="rounded-full bg-card/80 border border-line px-2.5 py-0.5 text-[11px] text-soft">
+          <span className="rounded-full bg-card border-2 border-line px-3 py-0.5 text-[11px] font-black text-soft shadow-xs">
             {fa(rawProblems.length)} مسئله تشریحی گام‌به‌گام
           </span>
         </div>
       </div>
 
-      {/* Playful & Charming Chapter Navigation Cards */}
+      {/* Tactile Chapter Navigation Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {CHAPTERS.map((ch) => {
           const isActive = activeChapter === ch.id;
@@ -248,17 +246,17 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
           > = {
             fourier: {
               iconBg: "from-amber-500 to-orange-500",
-              activeBorder: "border-orange-500/60 bg-gradient-to-br from-amber-500/15 via-orange-500/05 to-transparent",
+              activeBorder: "bg-gradient-to-br from-amber-500/15 via-orange-500/08 to-transparent",
               activeGlow: "via-orange-500",
             },
             pde: {
               iconBg: "from-orange-500 to-rose-500",
-              activeBorder: "border-rose-500/60 bg-gradient-to-br from-rose-500/15 via-orange-500/05 to-transparent",
+              activeBorder: "bg-gradient-to-br from-rose-500/15 via-orange-500/08 to-transparent",
               activeGlow: "via-rose-500",
             },
             complex: {
               iconBg: "from-emerald-500 to-teal-600",
-              activeBorder: "border-emerald-500/60 bg-gradient-to-br from-emerald-500/15 via-teal-500/05 to-transparent",
+              activeBorder: "bg-gradient-to-br from-emerald-500/15 via-teal-500/08 to-transparent",
               activeGlow: "via-emerald-500",
             },
           };
@@ -272,24 +270,24 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
                 onSelectChapter(ch.id);
                 setSelectedSubTopic("all");
               }}
-              className={`relative overflow-hidden p-4 sm:p-4.5 rounded-2xl border text-start transition-all cursor-pointer ${
+              className={`relative overflow-hidden p-4 sm:p-4.5 rounded-2xl border-2 border-line text-start transition-all cursor-pointer ${
                 isActive
-                  ? `${s.activeBorder} text-ink shadow-sm scale-[1.01]`
-                  : "border-line bg-card hover:bg-card2 text-soft hover:text-ink shadow-xs"
+                  ? `${s.activeBorder} text-ink shadow-md -translate-x-0.5 -translate-y-0.5`
+                  : "bg-card hover:bg-card2 text-soft hover:text-ink shadow-sm hover:shadow-md hover:-translate-x-0.5 hover:-translate-y-0.5"
               }`}
             >
               {isActive && (
                 <div
-                  className={`absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent ${s.activeGlow} to-transparent`}
+                  className={`absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent ${s.activeGlow} to-transparent`}
                 />
               )}
               <div className="flex items-center justify-between mb-2.5">
                 <span
-                  className={`flex h-9 w-9 items-center justify-center rounded-xl text-white text-xs font-black shadow-xs bg-gradient-to-br ${s.iconBg}`}
+                  className={`flex h-9 w-9 items-center justify-center rounded-xl border-2 border-line text-white text-xs font-black shadow-xs bg-gradient-to-br ${s.iconBg}`}
                 >
                   {ch.id === "fourier" ? <Layers size={17} /> : ch.id === "pde" ? <Flame size={17} /> : <Compass size={17} />}
                 </span>
-                <span className="text-[11px] font-bold text-faint bg-card2 px-2 py-0.5 rounded-full border border-line">
+                <span className="text-[11px] font-black text-faint bg-card2 px-2.5 py-0.5 rounded-full border-2 border-line shadow-xs">
                   فصل {fa(ch.number)}
                 </span>
               </div>
@@ -300,17 +298,17 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
         })}
       </div>
 
-      {/* Chapter Overview & Cheerful Progress Bar */}
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-card p-5 sm:p-6 shadow-sm">
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
+      {/* Chapter Overview & Cheerful Progress Bar with Solid Border */}
+      <div className="relative overflow-hidden rounded-2xl border-2 border-line bg-card p-5 sm:p-6 shadow-sm">
+        <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
 
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4 mb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-line pb-4 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-600 dark:text-orange-300 px-3 py-0.5 text-xs font-bold">
+              <span className="rounded-full border-2 border-line bg-amber-400/20 text-orange-800 dark:text-orange-300 px-3 py-0.5 text-xs font-black shadow-xs">
                 بانک حل‌المسائل تشریحی
               </span>
-              <span className="text-xs text-soft font-medium">
+              <span className="text-xs text-soft font-bold">
                 {fa(rawProblems.length)} مسئله استاندارد مقطع کارشناسی
               </span>
             </div>
@@ -322,19 +320,19 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
             </p>
           </div>
 
-          {/* Cheerful Stats Chips */}
+          {/* Cheerful Stats Chips with Tactile Borders */}
           <div className="flex flex-wrap items-center gap-2 ms-auto">
-            <span className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card2 px-3 py-1.5 text-xs font-bold text-ink shadow-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-xl border-2 border-line bg-card2 px-3 py-1.5 text-xs font-black text-ink shadow-xs">
               <CheckCircle2 size={14} className="text-emerald-500" />
               <span>{fa(solvedInChapter)} حل‌شده</span>
             </span>
 
-            <span className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card2 px-3 py-1.5 text-xs font-bold text-ink shadow-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-xl border-2 border-line bg-card2 px-3 py-1.5 text-xs font-black text-ink shadow-xs">
               <Bookmark size={14} className="text-amber-500 fill-amber-400" />
               <span>{fa(bookmarkedInChapter)} نشان‌شده</span>
             </span>
 
-            <span className="inline-flex items-center gap-1 rounded-xl border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-xs font-bold text-orange-600 dark:text-orange-300 shadow-xs">
+            <span className="inline-flex items-center gap-1 rounded-xl border-2 border-line bg-orange-500/15 px-3 py-1.5 text-xs font-black text-orange-700 dark:text-orange-300 shadow-xs">
               <span>{fa(completionPercent)}٪ تکمیل فصل</span>
             </span>
           </div>
@@ -342,7 +340,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
 
         {/* Cheerful Warm Progress Bar */}
         <div className="space-y-1.5">
-          <div className="h-2.5 rounded-full bg-card2 border border-line overflow-hidden">
+          <div className="h-3 rounded-full bg-card2 border-2 border-line overflow-hidden shadow-xs">
             <div
               className="h-full bg-gradient-to-l from-amber-400 via-orange-500 to-emerald-400 transition-all duration-500"
               style={{ width: `${completionPercent}%` }}
@@ -351,8 +349,8 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
         </div>
       </div>
 
-      {/* Filter & Search Bar with Warm Styling */}
-      <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 shadow-sm space-y-4">
+      {/* Filter & Search Bar with Solid 2px Borders */}
+      <div className="rounded-2xl border-2 border-line bg-card p-4 sm:p-5 shadow-sm space-y-4">
         {/* Search & Reset */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-[220px]">
@@ -362,13 +360,13 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
               placeholder="جستجو در متن سوالات، عنوان، یا دانشگاه/مرجع..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-line bg-card2 py-2.5 ps-9 pe-3 text-xs sm:text-sm font-medium text-ink placeholder:text-faint focus:outline-hidden focus:border-orange-500 focus:bg-card transition-all"
+              className="w-full rounded-xl border-2 border-line bg-card2 py-2.5 ps-9 pe-3 text-xs sm:text-sm font-bold text-ink placeholder:text-faint focus:outline-hidden focus:bg-card shadow-xs transition-all"
             />
           </div>
 
           <button
             onClick={handleResetFilters}
-            className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border border-line bg-card2 hover:bg-card px-3.5 py-2.5 text-xs font-bold text-soft hover:text-ink shadow-xs transition-all active:scale-95"
+            className="cursor-pointer inline-flex items-center gap-1.5 rounded-xl border-2 border-line bg-card2 hover:bg-card px-3.5 py-2.5 text-xs font-black text-soft hover:text-ink shadow-xs transition-all active:translate-x-0.5 active:translate-y-0.5"
             title="پاک کردن فیلترها"
           >
             <RotateCcw size={13} />
@@ -376,9 +374,9 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
           </button>
         </div>
 
-        {/* Subtopic Filters with Warm Glowing Pills */}
+        {/* Subtopic Filters with Neo-Brutalist Tactile Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
-          <span className="text-xs font-bold text-soft shrink-0 flex items-center gap-1 pe-1">
+          <span className="text-xs font-black text-soft shrink-0 flex items-center gap-1 pe-1">
             <Filter size={13} />
             مبحث:
           </span>
@@ -386,10 +384,10 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
             <button
               key={st.id}
               onClick={() => setSelectedSubTopic(st.id)}
-              className={`shrink-0 rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+              className={`shrink-0 rounded-xl px-3.5 py-1.5 text-xs font-black transition-all cursor-pointer border-2 border-line shadow-xs active:translate-x-0.5 active:translate-y-0.5 ${
                 selectedSubTopic === st.id
-                  ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xs font-black"
-                  : "border border-line bg-card text-soft hover:text-ink hover:bg-card2"
+                  ? "bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-sm"
+                  : "bg-card text-soft hover:text-ink hover:bg-card2"
               }`}
             >
               {st.label}
@@ -398,7 +396,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
         </div>
 
         {/* Custom Dropdown Filters */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-line">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t-2 border-line">
           <CustomFilterDropdown
             label="سطح دشواری"
             value={selectedDifficulty}
@@ -427,7 +425,7 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
 
       {/* Problem Cards Feed */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between text-xs font-bold text-soft px-1">
+        <div className="flex items-center justify-between text-xs font-black text-soft px-1">
           <span className="flex items-center gap-1">
             <Sparkles size={13} className="text-amber-500" />
             نمایش {fa(filteredProblems.length)} مسئله منطبق
@@ -436,15 +434,15 @@ export const ProblemsView: React.FC<ProblemsViewProps> = ({
         </div>
 
         {filteredProblems.length === 0 ? (
-          <div className="rounded-2xl border border-line bg-card p-12 text-center shadow-sm space-y-3">
+          <div className="rounded-2xl border-2 border-line bg-card p-12 text-center shadow-md space-y-3">
             <BookOpen size={36} className="mx-auto text-faint" />
             <h3 className="text-base font-black text-ink">مسئله‌ای با این فیلترها یافت نشد</h3>
-            <p className="text-xs text-soft max-w-sm mx-auto leading-6">
+            <p className="text-xs text-soft max-w-sm mx-auto leading-6 font-medium">
               لطفاً فیلترهای جستجو، مبحث یا سطح دشواری را تغییر دهید یا دکمه «ریست فیلترها» را بزنید.
             </p>
             <button
               onClick={handleResetFilters}
-              className="mt-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white px-5 py-2 text-xs font-bold shadow-xs cursor-pointer hover:opacity-90 transition-all"
+              className="mt-2 rounded-xl border-2 border-line bg-gradient-to-r from-amber-500 to-orange-500 text-white px-5 py-2 text-xs font-black shadow-xs cursor-pointer hover:opacity-90 transition-all active:translate-x-0.5 active:translate-y-0.5"
             >
               پاک کردن همه فیلترها
             </button>

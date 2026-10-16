@@ -3,107 +3,109 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ */
-/*  LIGHT MODE: Sunny Honey Oatmeal, Coral & Cozy Studio Canvas       */
+/*  LIGHT MODE: Warm Oat Cream, Sunset Amber & Tactile Neo-Brutalism  */
 /* ------------------------------------------------------------------ */
 :root {
-  --bg: #fbf9f5;
-  --bg-rgb: 251, 249, 245;
+  --bg: #fcfaf6;              /* Warm buttery oatmeal canvas */
+  --bg-rgb: 252, 250, 246;
 
-  --card: #ffffff;
+  --card: #ffffff;            /* Crisp warm milk surface */
   --card-rgb: 255, 255, 255;
 
-  --card2: #f4efe6;
-  --card2-rgb: 244, 239, 230;
+  --card2: #f6efe4;           /* Warm toasted almond secondary */
+  --card2-rgb: 246, 239, 228;
 
-  --card3: #eae2d5;
-  --card3-rgb: 234, 226, 213;
+  --card3: #ebe0d0;           /* Deeper toasted surface */
+  --card3-rgb: 235, 224, 208;
 
-  --ink: #262220;
-  --ink-rgb: 38, 34, 32;
+  --ink: #211c18;             /* Deep Roasted Espresso Ink */
+  --ink-rgb: 33, 28, 24;
 
-  --soft: #635b54;
-  --soft-rgb: 99, 91, 84;
+  --soft: #5e5349;            /* Warm hazelnut clay */
+  --soft-rgb: 94, 83, 73;
 
-  --faint: #968c82;
-  --faint-rgb: 150, 140, 130;
+  --faint: #9c8e80;           /* Soft warm stone */
+  --faint-rgb: 156, 142, 128;
 
-  --line: #e6ded3;
-  --line-rgb: 230, 222, 211;
+  --line: #26201b;            /* Solid Espresso Neo-Brutalist Border */
+  --line-rgb: 38, 32, 27;
 
-  --line-soft: #efe8de;
+  --line-soft: #dfd5c5;
 
   --accent: #ea580c;          /* Radiant Sunset Coral-Tangerine */
   --accent-rgb: 234, 88, 12;
   --accent-hover: #c2410c;
   --accent-ink: #ffffff;
 
-  --coral: #f43f5e;           /* Playful Rose-Coral */
-  --amber: #f59e0b;           /* Warm Honey Gold */
-  --gold: #d97706;            /* Deep Amber */
-  --mint: #059669;            /* Fresh Garden Mint */
+  --coral: #f43f5e;
+  --amber: #f59e0b;
+  --gold: #d97706;
+  --mint: #059669;
   --teal: #0d9488;
   --lavender: #7c3aed;
 
-  --math: #262220;
+  --math: #211c18;
 
-  --shadow-xs: 0 1px 3px 0 rgba(38, 34, 32, 0.04);
-  --shadow-sm: 0 3px 10px 0 rgba(38, 34, 32, 0.05), 0 1px 2px 0 rgba(38, 34, 32, 0.03);
-  --shadow-md: 0 10px 25px -4px rgba(38, 34, 32, 0.07), 0 2px 8px -2px rgba(38, 34, 32, 0.04);
-  --shadow-lg: 0 20px 40px -8px rgba(38, 34, 32, 0.1), 0 4px 14px -3px rgba(38, 34, 32, 0.05);
-  --shadow-xl: 0 28px 56px -12px rgba(38, 34, 32, 0.14);
+  /* Tactile Physical Neo-Brutalist Drop Shadows */
+  --shadow-xs: 1.5px 1.5px 0px #26201b;
+  --shadow-sm: 2.5px 2.5px 0px #26201b;
+  --shadow-md: 4px 4px 0px #26201b;
+  --shadow-lg: 6px 6px 0px #26201b;
+  --shadow-xl: 8px 8px 0px #26201b;
 
   color-scheme: light;
 }
 
 /* ------------------------------------------------------------------ */
-/*  DARK MODE: Cozy Midnight Coffee & Warm Amber Lantern Glow         */
+/*  DARK MODE: Cozy Midnight Coffee & Warm Amber Neo-Brutalism        */
 /* ------------------------------------------------------------------ */
 .dark {
-  --bg: #151210;
-  --bg-rgb: 21, 18, 16;
+  --bg: #14110f;              /* Cozy dark espresso beans */
+  --bg-rgb: 20, 17, 15;
 
-  --card: #1e1915;
-  --card-rgb: 30, 25, 21;
+  --card: #1c1713;            /* Roasted cedar surface */
+  --card-rgb: 28, 23, 19;
 
-  --card2: #27211c;
-  --card2-rgb: 39, 33, 28;
+  --card2: #261f1a;           /* Elevated warm surface */
+  --card2-rgb: 38, 31, 26;
 
-  --card3: #322a24;
-  --card3-rgb: 50, 42, 36;
+  --card3: #332922;
+  --card3-rgb: 51, 41, 34;
 
-  --ink: #fef7ee;
+  --ink: #fef7ee;             /* Warm soft cream text */
   --ink-rgb: 254, 247, 238;
 
-  --soft: #b5aba1;
-  --soft-rgb: 181, 171, 161;
+  --soft: #b8ada2;            /* Light almond stone text */
+  --soft-rgb: 184, 173, 162;
 
-  --faint: #7d7267;
-  --faint-rgb: 125, 114, 103;
+  --faint: #7a6e63;
+  --faint-rgb: 122, 110, 99;
 
-  --line: #382e26;
-  --line-rgb: 56, 46, 38;
+  --line: #45372d;            /* Rich Warm Bronze-Espresso Border */
+  --line-rgb: 69, 55, 45;
 
-  --line-soft: #2a221b;
+  --line-soft: #2c221b;
 
-  --accent: #fb923c;          /* Cheerful Luminous Apricot-Tangerine */
+  --accent: #fb923c;          /* Luminous Apricot-Tangerine */
   --accent-rgb: 251, 146, 60;
   --accent-hover: #f97316;
-  --accent-ink: #1c1511;
+  --accent-ink: #18120e;
 
   --coral: #fb7185;
   --amber: #fbbf24;
   --gold: #f59e0b;
-  --mint: #34d399;            /* Luminous Fresh Mint */
+  --mint: #34d399;
   --teal: #2dd4bf;
   --lavender: #a78bfa;
 
   --math: #fef7ee;
 
-  --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.35);
-  --shadow-sm: 0 3px 12px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 12px 30px -4px rgba(0, 0, 0, 0.55), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 22px 50px -8px rgba(0, 0, 0, 0.7);
-  --shadow-xl: 0 32px 64px -12px rgba(0, 0, 0, 0.85);
+  /* Tactile Physical Neo-Brutalist Dark Shadows */
+  --shadow-xs: 1.5px 1.5px 0px #0b0908;
+  --shadow-sm: 2.5px 2.5px 0px #0b0908;
+  --shadow-md: 4px 4px 0px #0b0908;
+  --shadow-lg: 6px 6px 0px #0b0908;
+  --shadow-xl: 8px 8px 0px #0b0908;
 
   color-scheme: dark;
 }
@@ -132,25 +134,76 @@ body {
 
 /* ---------- Focus & Accessible States ---------- */
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2.5px solid var(--accent);
+  outline-offset: 2.5px;
   border-radius: 8px;
 }
 
-/* ---------- Modern Card Architecture ---------- */
-.card-modern {
-  background-color: var(--card);
-  border: 1px solid var(--line);
+/* ---------- Tactile Warm Neo-Brutalist Utilities ---------- */
+.neo-box {
+  border: 2px solid var(--line);
   box-shadow: var(--shadow-sm);
-  border-radius: 1.25rem;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.22s ease;
 }
 
-.card-modern:hover {
+.neo-box-md {
+  border: 2px solid var(--line);
   box-shadow: var(--shadow-md);
-  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.neo-card {
+  background-color: var(--card);
+  border: 2px solid var(--line);
+  box-shadow: var(--shadow-md);
+  border-radius: 1.25rem;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-card:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.neo-btn {
+  border: 2px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  font-weight: 800;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-btn:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: var(--shadow-md);
+}
+
+.neo-btn:active {
+  transform: translate(1.5px, 1.5px);
+  box-shadow: none;
+}
+
+.neo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1.75px solid var(--line);
+  box-shadow: var(--shadow-xs);
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.neo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1.75px solid var(--line);
+  box-shadow: var(--shadow-xs);
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
 }
 
 .scroll-mt-header {
@@ -207,7 +260,7 @@ body {
   scrollbar-width: thin;
 }
 
-/* ---------- Cozy Polished Scrollbars ---------- */
+/* ---------- Tactile Polished Scrollbars ---------- */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--line) var(--card2);
